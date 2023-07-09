@@ -1,0 +1,95 @@
+<div class="content">
+  <mat-stepper class="form-floating">
+    <mat-step>
+      <form >
+        <ng-template matStepLabel>Nom</ng-template>
+        <mat-form-field appearance="outline" >
+          <mat-label>Nom et Prenoms</mat-label>
+          <input matInput type="texte">
+          <mat-error>Error</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Date de naissance</mat-label>
+          <input matInput [matDatepicker]="picker">
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Lieu de naissance</mat-label>
+          <input matInput>
+        </mat-form-field>
+
+        <mat-radio-group aria-label="Sexe">
+          <mat-radio-button value="1">Homme</mat-radio-button>
+          <mat-radio-button value="2">Femme</mat-radio-button>
+        </mat-radio-group>
+
+        <button mat-button color="primary" matStepperNext>Suivant</button>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel="Contact">Contact</ng-template>
+
+      <mat-form-field appearance="outline" >
+        <mat-label>Telephone</mat-label>
+        <input matInput type="texte">
+        <mat-error>Error</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" >
+        <mat-label>Adresse-Ville-Quartier</mat-label>
+        <input matInput type="texte">
+        <mat-error>Error</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" >
+        <mat-label>No CNI</mat-label>
+        <input matInput type="texte">
+        <mat-error>Error</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Date de delivrance</mat-label>
+        <input matInput [matDatepicker]="picker">
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <button mat-button matStepperNext>Suivant</button>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel="Reunion">Reunion</ng-template>
+      <mat-form-field appearance="outline" >
+        <mat-label>Parrin 1</mat-label>
+        <input matInput type="texte">
+        <mat-error>Error</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" >
+        <mat-label>Parrin 2</mat-label>
+        <input matInput type="texte">
+        <mat-error>Error</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" >
+        <mat-label>Parrin 3</mat-label>
+        <input matInput type="texte">
+        <mat-error>Error</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" >
+        <mat-label>Parrin 4</mat-label>
+        <input matInput type="texte">
+        <mat-error>Error</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" >
+        <mat-label>Parrin 5</mat-label>
+        <input matInput type="texte">
+        <mat-error>Error</mat-error>
+      </mat-form-field>
+    </mat-step>
+  </mat-stepper>
+</div>

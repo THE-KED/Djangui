@@ -1,0 +1,10 @@
+<div class="content">
+  <span class="btn-content">
+    <button class="{{classeName}}" mat-button routerLink="/tontine/detail">
+      <div class="finish">
+        <span class="nom"> {{tontine.nom}} </span>
+        <span class="title" *ngIf="!tontine.actif"> Terminer </span>
+      </div>
+    </button>
+  </span>
+</div>

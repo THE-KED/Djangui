@@ -1,0 +1,23 @@
+<div class="content">
+
+  <div class="list">
+
+    <mat-list>
+      <div mat-subheader>Tontines ventes</div>
+
+      <mat-list-item *ngFor="let vente of ventes ">
+        <app-tontine [tontine]="vente"></app-tontine>
+      </mat-list-item>
+
+      <mat-divider></mat-divider>
+      <div mat-subheader>Tontines Simple</div>
+
+      <mat-list-item *ngFor="let simple of simples">
+        <app-tontine [tontine]="simple"></app-tontine>
+      </mat-list-item>
+
+    </mat-list>
+
+  </div>
+
+</div>

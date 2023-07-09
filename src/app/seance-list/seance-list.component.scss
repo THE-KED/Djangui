@@ -1,0 +1,50 @@
+.content{
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tab{
+  width: 60%;
+  margin: 45px 0 75px 0;
+  background-color: #efefef;
+}
+
+table{
+  width: 50%;
+  height: 50%;
+  //background: #efefef;
+
+}
+.echec{
+  display: inline-flex;
+  min-width: 35px;
+}
+.pan{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  button{
+    width: 95%;
+    margin: 10px;
+  }
+
+  tfoot{
+    margin-top: 25px;
+    width: 95%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+}
+tr{
+  //background-color: rgba(220, 20, 60, 0.2);
+  //background-color: rgba(0, 255, 127, 0.1);
+}
+tr:hover{
+  //background-color: rgba(220, 20, 60, 0.2);
+}

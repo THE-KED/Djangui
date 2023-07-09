@@ -1,0 +1,45 @@
+.header-img{
+  width: 100%;
+  img{
+    width: 100%;
+
+  }
+}
+.buttons{
+  margin-left: 55px;
+}
+.menu-btn{
+  margin-right: 10px;
+
+}
+.plus{
+  //position: absolute;
+  right: 0px;
+}
+.icon{
+  color: white;
+}
+.sub-menu-btn{
+  //color: #673ab7;
+}
+.sub-menu-btn{
+  //color: #673ab7 !important;
+}
+.footer{
+  z-index: 100;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  background-color: #673ab7B3;
+  color: #dad7e1;
+  span{
+    padding: 5px;
+    margin: 0px 10px 0px 10px;
+  }
+}
+mat-toolbar{
+  z-index: 100;
+  position: sticky;
+  top:0;
+}

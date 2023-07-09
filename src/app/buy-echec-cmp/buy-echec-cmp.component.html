@@ -1,0 +1,58 @@
+<div class="content">
+  <div class="tab">
+    <span class="pan">
+      <h4> 03/07/23-v-2 ème TONTINE VENTE VINGT MILLE-Mar/21/20000 </h4>
+    </span>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Nom </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="cotisation">
+        <th mat-header-cell *matHeaderCellDef> Cotisation </th>
+        <td mat-cell *matCellDef="let element">
+          <span class="lab">Non</span>
+        </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="retard">
+        <th mat-header-cell *matHeaderCellDef> Retard </th>
+        <td mat-cell *matCellDef="let element"> <span matBadge="1" class="echec" matBadgeColor="warn"> Oui </span> </td>
+      </ng-container>
+
+      <ng-container matColumnDef="echec">
+        <th mat-header-cell *matHeaderCellDef> Echec </th>
+        <td mat-cell *matCellDef="let element"> <button mat-flat-button color="primary"> Payer </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+    <span class="pan">
+      <tfoot>
+        <tr>
+          <th scope="col" colspan="2">Total</th>
+          <th scope="col" class="text-center">0 / 1 100 000 F</th>
+          <th scope="col" class="text-center">0</th>
+          <th scope="col" class="text-center"> 55</th>
+        </tr>
+      </tfoot>
+    </span>
+  </div>
+</div>
