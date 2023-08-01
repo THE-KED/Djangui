@@ -1,15 +1,18 @@
+import {Tontine} from "../Abstracts/Tontine";
+import {Beneficiaire} from "./Beneficiaire";
+
 export class Cotisation {
   id: number;
   nom: string;
   rang: number;
   statut: number;
-  taux_echec: number | null;
-  taux_vente: number | null;
+  tauxEchec: number;
+  tauxVente: number;
+  tauxTontine: number;
   complement: number;
   gratuit: number;
-  vente_id: number | null;
-  simple_id: number | null;
-  beneficiaire_id: number | null;
+  tontine:Tontine;
+  beneficiaire: Beneficiaire;
   created_at: Date | null;
   updated_at: Date | null;
 
@@ -18,13 +21,13 @@ export class Cotisation {
     nom: string,
     rang: number,
     statut: number,
-    taux_echec: number | null,
-    taux_vente: number | null,
+    taux_echec: number,
+    taux_vente: number,
     complement: number,
+    taux_tontine:number,
     gratuit: number,
-    vente_id: number | null,
-    simple_id: number | null,
-    beneficiaire_id: number | null,
+    tontine:Tontine,
+    beneficiaire: Beneficiaire,
     created_at: Date | null,
     updated_at: Date | null
   ) {
@@ -32,13 +35,13 @@ export class Cotisation {
     this.nom = nom;
     this.rang = rang;
     this.statut = statut;
-    this.taux_echec = taux_echec;
-    this.taux_vente = taux_vente;
+    this.tauxEchec = taux_echec;
+    this.tauxVente = taux_vente;
+    this.tauxTontine = taux_tontine;
     this.complement = complement;
     this.gratuit = gratuit;
-    this.vente_id = vente_id;
-    this.simple_id = simple_id;
-    this.beneficiaire_id = beneficiaire_id;
+    this.tontine =tontine;
+    this.beneficiaire = beneficiaire;
     this.created_at = created_at;
     this.updated_at = updated_at;
   }

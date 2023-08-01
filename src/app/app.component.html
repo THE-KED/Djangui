@@ -14,16 +14,14 @@
       <span class="plus"> <button mat-button color="warn" class="menu-btn" [matMenuTriggerFor]="plus">Plus</button> </span>
 
       <mat-menu #cotisation>
-        <button mat-menu-item class="sub-menu-btn"><mat-icon>add</mat-icon>Nouvelle</button>
+        <button mat-menu-item class="sub-menu-btn" ><mat-icon>add</mat-icon>Nouvelle</button>
         <button mat-menu-item class="sub-menu-btn" routerLink="tontines"><mat-icon color="primary">analytics</mat-icon>Consulter</button>
         <button mat-menu-item class="sub-menu-btn" routerLink="echec"><mat-icon color="accent">payments</mat-icon>Payer un echec</button>
       </mat-menu>
 
       <mat-menu #tontines>
-        <button mat-menu-item class="sub-menu-btn"><mat-icon color="primary">add</mat-icon>Nouvelle tontine vente</button>
-        <button mat-menu-item class="sub-menu-btn"><mat-icon color="primary">add</mat-icon>Nouvelle tontine simple</button>
-        <button mat-menu-item class="sub-menu-btn" routerLink="tontines" ><mat-icon color="primary">list</mat-icon>Liste tontine vente</button>
-        <button mat-menu-item class="sub-menu-btn" routerLink="tontines" ><mat-icon color="primary">list</mat-icon>Liste tontine simple</button>
+        <button mat-menu-item class="sub-menu-btn"><mat-icon color="primary">add</mat-icon>Nouvelle tontine</button>
+        <button mat-menu-item class="sub-menu-btn" routerLink="show/tontine" ><mat-icon color="primary">list</mat-icon>Liste tontine</button>
       </mat-menu>
 
       <mat-menu #membres>
@@ -58,7 +56,7 @@
   </mat-toolbar>
   <router-outlet></router-outlet>
   <div class="footer">
-    <span>© 2019 Copyright: Djangui</span>
+    <span>© 2023 Copyright: Djangui</span>
     <span>by MegaPlus</span>
   </div>
 </div>

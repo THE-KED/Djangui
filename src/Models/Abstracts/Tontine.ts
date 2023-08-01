@@ -1,20 +1,26 @@
+import {TypeTontine} from "../Entitys/TypeTontine";
+
 export abstract class Tontine{
 
+  id: number;
   actif: boolean;
   nom: string;
-  taux_tontine: number | null;
-  taux_echec: number | null;
-  taux_retard: number | null;
+  type:TypeTontine;
+  tauxTontine: number ;
+  tauxEchec: number ;
+  tauxRetard: number;
   frequence: number;
   created_at: Date | null;
   updated_at: Date | null;
 
-  constructor(actif: boolean, nom: string, taux_tontine: number | null, taux_echec: number | null, taux_retard: number | null, frequence: number, created_at: Date | null, updated_at: Date | null) {
+  constructor(id:number, actif: boolean, nom: string, type:TypeTontine, taux_tontine: number, taux_echec: number, taux_retard: number, frequence: number, created_at: Date | null, updated_at: Date | null) {
+    this.id=id;
     this.actif = actif;
     this.nom = nom;
-    this.taux_tontine = taux_tontine;
-    this.taux_echec = taux_echec;
-    this.taux_retard = taux_retard;
+    this.type=type;
+    this.tauxTontine = taux_tontine;
+    this.tauxEchec = taux_echec;
+    this.tauxRetard = taux_retard;
     this.frequence = frequence;
     this.created_at = created_at;
     this.updated_at = updated_at;

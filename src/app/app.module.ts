@@ -28,6 +28,13 @@ import { CotisationDBComponent } from './cotisation-db/cotisation-db.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import { SeanceListComponent } from './seance-list/seance-list.component';
 import { BuyEchecCmpComponent } from './buy-echec-cmp/buy-echec-cmp.component';
+import { ProfilTontineComponent } from './profil-tontine/profil-tontine.component';
+import { ProfiluserComponent } from './profiluser/profiluser.component';
+import { ShowtontineComponent } from './showtontine/showtontine.component';
+import {HttpClientModule} from "@angular/common/http";
+import { CotisationDetailComponent } from './cotisation-detail/cotisation-detail.component';
+import { MoneyPipe } from './money.pipe';
+import { TontineDescComponent } from './tontine-desc/tontine-desc.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +47,12 @@ import { BuyEchecCmpComponent } from './buy-echec-cmp/buy-echec-cmp.component';
     CotisationDBComponent,
     SeanceListComponent,
     BuyEchecCmpComponent,
+    ProfilTontineComponent,
+    ProfiluserComponent,
+    ShowtontineComponent,
+    CotisationDetailComponent,
+    MoneyPipe,
+    TontineDescComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,6 +74,7 @@ import { BuyEchecCmpComponent } from './buy-echec-cmp/buy-echec-cmp.component';
     MatListModule,
     MatBadgeModule,
     MatDialogModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

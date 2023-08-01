@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {DataTestService} from "../Services/data-test.service";
 import {Membre} from "../../Models/Entitys/Membre";
+import {MembreServiceService} from "../Services/membre-service.service";
+import {MatTableDataSource} from "@angular/material/table";
 
 @Component({
   selector: 'app-member-list',
@@ -20,22 +22,20 @@ import {Membre} from "../../Models/Entitys/Membre";
 
 export class MemberListComponent implements OnInit{
 
-  mem:Membre[]= [];
-  constructor(public dataServ:DataTestService) {
+  mem:MatTableDataSource<Membre> = new MatTableDataSource<Membre>();
+  constructor(private memberService :MembreServiceService) {
   }
 
   ngOnInit() {
-    this.dataServ.logdatasize();
-    this.dataServ.MemberSubject.subscribe((data:Membre[])=>{
-      this.mem=data;
-      console.log(this.mem[2].created_at)
-    });
-    this.dataServ.emit();
-    this.dataServ.logdatasize();
+    this.memberService.LoadMembres().subscribe(
+      data=>{
+        this.mem = new MatTableDataSource(data);
+      }
+    );
   }
 
 
   columnsToDisplay = ['No', 'Nom', 'Poste'];
   columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
-  expandedElement = this.mem[1];
+  expandedElement = this.mem.data[1];
 }

@@ -1,20 +1,23 @@
+import {Membre} from "./Membre";
+import {Seance} from "./Seance";
+
 export class Presence {
   id: number;
-  membre_id: number;
-  seance_id: number;
+  membre: Membre;
+  seance: Seance;
   created_at: Date | null;
   updated_at: Date | null;
 
   constructor(
     id: number,
-    membre_id: number,
-    seance_id: number,
+    membre: Membre,
+    seance: Seance,
     created_at: Date | null,
     updated_at: Date | null
   ) {
     this.id = id;
-    this.membre_id = membre_id;
-    this.seance_id = seance_id;
+    this.membre = membre;
+    this.seance = seance;
     this.created_at = created_at;
     this.updated_at = updated_at;
   }

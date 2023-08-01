@@ -7,4 +7,27 @@ body{
   background-image: url(./assets/img/bg/bg2.jpg);
   background-size: cover;
   background-attachment: fixed;
+
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: #cc0000;
+
 }
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #17a2b8;
+}
+
+

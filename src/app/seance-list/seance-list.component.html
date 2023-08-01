@@ -11,13 +11,13 @@
       <!-- Position Column -->
       <ng-container matColumnDef="intitule">
         <th mat-header-cell *matHeaderCellDef> Intitule </th>
-        <td mat-cell *matCellDef="let element"> Tontine vente </td>
+        <td mat-cell *matCellDef="let element"> {{element.nom}} </td>
       </ng-container>
 
       <!-- Name Column -->
       <ng-container matColumnDef="seance">
         <th mat-header-cell *matHeaderCellDef> seance </th>
-        <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.rang}} </td>
       </ng-container>
 
       <!-- Weight Column -->
@@ -25,7 +25,8 @@
         <th mat-header-cell *matHeaderCellDef> Cotisation </th>
         <td mat-cell *matCellDef="let element">
           <span>
-            <button mat-stroked-button color="primary"> Afficher </button>
+            <button mat-stroked-button color="primary" routerLink="/tontine/affiche/{{idTontine}}/{{element.id}}" *ngIf="element.statut ==3"> Afficher </button>
+            <button mat-flat-button color="primary" routerLink="/tontine/affiche/{{idTontine}}/{{element.id}}" *ngIf="element.statut !=3"> Terminer </button>
           </span>
         </td>
       </ng-container>

@@ -1,20 +1,23 @@
+import {Membre} from "./Membre";
+import {TypeDebit} from "./TypeDebit";
+
 export class Debit {
   id: number;
-  membre_id: number;
-  type_debit_id: number;
+  membre: Membre;
+  type_debit: TypeDebit;
   created_at: Date | null;
   updated_at: Date | null;
 
   constructor(
     id: number,
-    membre_id: number,
-    type_debit_id: number,
+    membre: Membre,
+    type_debit: TypeDebit,
     created_at: Date | null,
     updated_at: Date | null
   ) {
     this.id = id;
-    this.membre_id = membre_id;
-    this.type_debit_id = type_debit_id;
+    this.membre = membre;
+    this.type_debit = type_debit;
     this.created_at = created_at;
     this.updated_at = updated_at;
   }

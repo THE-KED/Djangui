@@ -65,10 +65,14 @@ tr{
     justify-content: space-evenly;
   }
 }
-tr{
-  //background-color: rgba(220, 20, 60, 0.2);
-  //background-color: rgba(0, 255, 127, 0.1);
+.mat-mdc-row{
+  .ben{
+    background-color: rgba(255, 223, 126, 0.45) !important;
+  }
 }
-tr:hover{
-  //background-color: rgba(220, 20, 60, 0.2);
+.rejeter{
+  color: crimson;
+}
+.tonine{
+  color: #17a2b8;
 }

@@ -1,3 +1,5 @@
+import {Poste} from "./Poste";
+
 export class Membre{
 
   id:string|number;
@@ -18,10 +20,11 @@ export class Membre{
   p4:string|null;
   p5:string|null;
   created_at:string|Date;
-  updated_at:string|Date
+  updated_at:string|Date;
+  postes:Poste[]|null;
 
 
-  constructor(id: string | number, nom: string, ddn: string | Date, ldn: string, sexe: string, profession: string, cni: string, dcni: string | Date, tel: string, adresse: string, image: File | null, actif: string | number, p1: string | null, p2: string | null, p3: string | null, p4: string | null, p5: string | null, created_at: string | Date, updated_at: string | Date) {
+  constructor(id: string | number, nom: string, ddn: string | Date, ldn: string, sexe: string, profession: string, cni: string, dcni: string | Date, tel: string, adresse: string, image: File | null, actif: string | number, p1: string | null, p2: string | null, p3: string | null, p4: string | null, p5: string | null, created_at: string | Date, updated_at: string | Date, poste:Poste[]|null) {
     this.id = id;
     this.nom = nom;
     this.ddn = ddn;
@@ -41,13 +44,7 @@ export class Membre{
     this.p5 = p5;
     this.created_at = created_at;
     this.updated_at = updated_at;
+    this.postes=poste;
   }
-
-// constructor() {
-  //   this.id=0;
-  //   this.nom="";
-  //   this.
-  //   this.created_at= new Date(Date.now());
-  // }
 
 }

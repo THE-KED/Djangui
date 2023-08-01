@@ -14,7 +14,7 @@
       </ng-container>
       <ng-container matColumnDef="Poste">
       <th mat-header-cell *matHeaderCellDef>Poste </th>
-      <td mat-cell *matCellDef="let element">Regulier</td>
+      <td mat-cell *matCellDef="let element">{{element.postes[0].nom}}</td>
     </ng-container>
       <ng-container matColumnDef="expand">
         <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>

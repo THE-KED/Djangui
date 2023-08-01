@@ -1,0 +1,57 @@
+<div class="content">
+
+  <div class="list" *ngFor="let type of types ; let j=index">
+      <span class="pan">
+      <h4> Liste Des Tontines {{type.nom}}s </h4>
+    </span>
+      <table mat-table [dataSource]="tontines[j].slice()" class="mat-elevation-z8">
+
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="position">
+          <th mat-header-cell *matHeaderCellDef> No. </th>
+          <td mat-cell *matCellDef="let element,index as i " class="{{getClass(element)}}"> {{i+1}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Nom </th>
+          <td mat-cell *matCellDef="let element" class="{{getClass(element)}}"> {{element.nom}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="cotisation">
+          <th mat-header-cell *matHeaderCellDef> Taux </th>
+          <td mat-cell *matCellDef="let element" class="{{getClass(element)}}">
+            <span class="lab">{{element.tauxTontine}}</span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="type">
+          <th mat-header-cell *matHeaderCellDef> Taux </th>
+          <td mat-cell *matCellDef="let element" class="{{getClass(element)}}">
+            <span class="lab">{{element.type.nom}}</span>
+          </td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="retard">
+          <th mat-header-cell *matHeaderCellDef> </th>
+          <td mat-cell *matCellDef="let element" class="{{getClass(element)}}"> <button mat-flat-button color="warn" routerLink="/tontine/desc/{{element.id}}">Afficher</button> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="echec">
+          <th mat-header-cell *matHeaderCellDef> </th>
+          <td mat-cell *matCellDef="let element" class="{{getClass(element)}}"> <button *ngIf="!element.actif" mat-stroked-button disabled="false" color="primary">Ajouter un Membre</button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      </table>
+
+  </div>
+</div>
