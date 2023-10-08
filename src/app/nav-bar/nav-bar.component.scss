@@ -1,0 +1,96 @@
+.header-img{
+  width: 100%;
+  img{
+    width: 100%;
+
+  }
+}
+.buttons{
+  margin-left: 55px;
+}
+.menu-btn{
+  margin-right: 10px;
+
+}
+.plus{
+  //position: absolute;
+  right: 0px;
+  color: #f44336;
+}
+.auth{
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+.icon{
+  color: white;
+}
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  max-width: 300px;
+  width: 80%;
+
+}
+
+mat-sidenav-container.mat-drawer-container {
+  position: sticky;
+  top: 0;
+}
+
+.sidenav{
+  background: inherit;
+}
+.tool--row{
+  overflow: hidden;
+  border-bottom: 3px solid #f44336;
+}
+.img--content{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  img{
+    width: 200%;
+    margin-left: 10%;
+  }
+}
+.menu--btn{
+  width: 100%;
+  display: flex;
+  align-items: self-end;
+  justify-content: flex-start;
+  gap: 15px;
+}
+.sub--btn{
+  border-bottom: 1px solid #d7d6d6;
+}
+.sub--btn:nth-child(1){
+  border-top: 1px solid #d7d6d6;
+}
+.start--btn--wapper{
+  width: 100%;
+  padding: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.auth--bottom{
+  margin: 2em 0 2.5em 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.logo{
+  margin: 0 1.5em;
+  color:#f44336;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+
+}
+

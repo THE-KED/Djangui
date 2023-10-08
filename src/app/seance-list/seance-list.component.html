@@ -25,8 +25,8 @@
         <th mat-header-cell *matHeaderCellDef> Cotisation </th>
         <td mat-cell *matCellDef="let element">
           <span>
-            <button mat-stroked-button color="primary" routerLink="/tontine/affiche/{{idTontine}}/{{element.id}}" *ngIf="element.statut ==3"> Afficher </button>
-            <button mat-flat-button color="primary" routerLink="/tontine/affiche/{{idTontine}}/{{element.id}}" *ngIf="element.statut !=3"> Terminer </button>
+            <button mat-stroked-button color="primary" routerLink="{{nextRoute}}{{idTontine}}/{{element.id}}" *ngIf="element.statut ==2"> Afficher </button>
+            <button mat-flat-button color="primary" (click)="endCotisation(element)" *ngIf="element.statut <2"> Terminer </button>
           </span>
         </td>
       </ng-container>

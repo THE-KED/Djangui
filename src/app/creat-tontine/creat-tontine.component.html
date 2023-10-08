@@ -1,0 +1,54 @@
+<div class="content">
+
+  <div class="list">
+
+    <form [formGroup]="Form" (ngSubmit)="creat()">
+
+      <mat-form-field appearance="outline">
+        <mat-select id="type"  required placeholder="Type" formControlName="type">
+          <mat-option value='1'>Vente</mat-option>
+          <mat-option value='2'>Simple</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Intitulé:</mat-label>
+        <input matInput id="intituler" type="text" placeholder="Intitulé:" formControlName="intituler" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Montant de cotisation:</mat-label>
+        <input matInput id="tauxTontine" type="number" placeholder="Montant" formControlName="tauxTontine" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre max de seances:</mat-label>
+        <input matInput id="nbSeances" type="number" placeholder="nombre de seances" formControlName="nbSeances" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Fréquence:</mat-label>
+        <input matInput id="frequence" type="text" placeholder="Fréquence:" formControlName="frequence">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" *ngIf="Form.value.type=='2'">
+        <mat-label>Montant du retard:</mat-label>
+        <input matInput id="tauxRetard" type="number" placeholder="Montant du retard" formControlName="tauxRetard" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" *ngIf="Form.value.type=='2'">
+        <mat-label>Echec Non bénéficier: </mat-label>
+        <input matInput id="tauxEchec" type="number" placeholder="Echec Non bénéficier" formControlName="tauxEchec" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" *ngIf="Form.value.type=='2'">
+        <mat-label>Echec déjà bénéficier:</mat-label>
+        <input matInput id="tauxEchecB" type="number" placeholder="Echec déjà bénéficier" formControlName="tauxEchecB" required>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" [disabled]="!Form.valid">Créer</button>
+    </form>
+
+  </div>
+
+</div>

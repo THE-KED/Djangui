@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Tontine} from "../../Models/Abstracts/Tontine";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-tontine',
@@ -15,13 +16,17 @@ export class TontineComponent implements OnInit{
   begginDate = new Date(Date.now());
   isFinish = true;
   classeName="Btn"
+  nextRoute="./seances"
 
-  constructor() {
+  constructor(private route:Router) {
 
   }
 
   ngOnInit() {
     if (this.tontine.actif)
       this.classeName="encour";
+
+    if(this.route.url=="/public/start")
+      this.nextRoute="./check"
   }
 }

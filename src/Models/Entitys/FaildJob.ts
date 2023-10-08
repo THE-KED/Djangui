@@ -4,7 +4,7 @@ export class FailedJob {
   queue: string;
   payload: string;
   exception: string;
-  failed_at: Date;
+  failedAt: Date;
 
   constructor(
     id: bigint,
@@ -19,6 +19,6 @@ export class FailedJob {
     this.queue = queue;
     this.payload = payload;
     this.exception = exception;
-    this.failed_at = failed_at;
+    this.failedAt = failed_at;
   }
 }

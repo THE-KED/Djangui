@@ -5,8 +5,8 @@ export class Poste {
   nom: string;
   validite: number;
   membre:Membre|null;
-  created_at: Date | null;
-  updated_at: Date | null;
+  createdAt: Date | null;
+  updatedAt: Date | null;
 
   constructor(
     id: number,
@@ -20,7 +20,7 @@ export class Poste {
     this.nom = nom;
     this.validite = validite;
     this.membre=membre;
-    this.created_at = created_at;
-    this.updated_at = updated_at;
+    this.createdAt = created_at;
+    this.updatedAt = updated_at;
   }
 }

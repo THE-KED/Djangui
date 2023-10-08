@@ -2,17 +2,17 @@ import {Cotisation} from "./Cotisation";
 import {Enregistrement} from "./Enregistrement";
 
 export class Participation {
-  id: number;
+  id: number|null;
   retard: boolean;
   echec: boolean;
   tontine: boolean;
   cotisation: Cotisation;
   enregistrement: Enregistrement;
-  created_at: Date | null;
-  updated_at: Date | null;
+  createdAt: Date | null;
+  updatedAt: Date | null;
 
   constructor(
-    id: number,
+    id: number|null,
     retard: boolean,
     echec: boolean,
     tontine: boolean,
@@ -27,7 +27,7 @@ export class Participation {
     this.tontine = tontine;
     this.cotisation = cotisation;
     this.enregistrement = enregistrement;
-    this.created_at = created_at;
-    this.updated_at = updated_at;
+    this.createdAt = created_at;
+    this.updatedAt = updated_at;
   }
 }

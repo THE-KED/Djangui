@@ -5,8 +5,8 @@ export class Sanction {
   id: number;
   membre: Membre;
   type_sanction: TypeSanction;
-  created_at: Date | null;
-  updated_at: Date | null;
+  createdAt: Date | null;
+  updatedAt: Date | null;
 
   constructor(
     id: number,
@@ -18,7 +18,7 @@ export class Sanction {
     this.id = id;
     this.membre = membre;
     this.type_sanction = type_sanction;
-    this.created_at = created_at;
-    this.updated_at = updated_at;
+    this.createdAt = created_at;
+    this.updatedAt = updated_at;
   }
 }

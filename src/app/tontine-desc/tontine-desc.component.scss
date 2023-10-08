@@ -24,20 +24,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 }
 .tab{
-  width: 50%;
-  margin: 45px 0 75px 0;
-  //background-color: #efefef;
+  width: 70%;
+  margin: 45px 0 0 0;
 }
 .pan{
   padding-top: 20px;
   @include glass-morph(1);
 }
 table{
-  width: 50%;
-  height: 50%;
-  //background: #efefef;
+  position: relative;
   @include glass-morph(2);
 }
 .echec{
@@ -80,4 +78,12 @@ tr:hover{
   width: 32px;
   padding-right: 24px;
   text-align: center;
+}
+.primary{
+  color: #cc0000;
+}
+.mat-mdc-row{
+  .gratuit{
+    background-color: rgba(0, 255, 127, 0.31) !important;
+  }
 }

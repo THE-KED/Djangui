@@ -1,6 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
+html, body { height: 100%;
+width: 100vw;
+margin-left:0;
+left: 0;}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 body{
@@ -27,7 +30,25 @@ body{
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #17a2b8;
+  background: #f44336;
+}
+//*{
+//  top: 0;
+//  left: 0;
+//  box-sizing: border-box;
+//  padding: 0;
+//  margin: 0;
+//}
+.mat-drawer-transition .mat-drawer-backdrop{
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top:0;
 }
 
-
+.left mat-grid-tile-content{
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  background: burlywood;
+}

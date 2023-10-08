@@ -6,8 +6,8 @@ export class Enregistrement {
   rang: number;
   membre: Membre;
   tontine: Tontine |null
-  created_at: Date | null;
-  updated_at: Date | null;
+  createdAt: Date | null;
+  updatedAt: Date | null;
 
   constructor(
     id: number,
@@ -21,7 +21,7 @@ export class Enregistrement {
     this.rang = rang;
     this.membre = membre;
     this.tontine = tontine;
-    this.created_at = created_at;
-    this.updated_at = updated_at;
+    this.createdAt = created_at;
+    this.updatedAt = updated_at;
   }
 }

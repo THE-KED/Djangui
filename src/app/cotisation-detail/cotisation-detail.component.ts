@@ -70,6 +70,7 @@ export class CotisationDetailComponent implements OnInit{
     this.tontineService.getAllLastbenef(this.idCot).subscribe(
       data=>{
         for (let ben of data){
+          if(ben.enregistrement)
           this.benefs.set(ben.enregistrement.id,ben);
         }
       }
@@ -78,8 +79,8 @@ export class CotisationDetailComponent implements OnInit{
   }
 
   getclass(id:number):string{
-
-    if(this.benefs.has(id) && this.cot.beneficiaire.enregistrement.id!=id)
+    if(this.cot.beneficiaire?.enregistrement)
+    if(this.benefs.has(id) && this.cot.beneficiaire?.enregistrement.id!=id)
       return "ben";
     return "nonBen";
   }

@@ -2,6 +2,7 @@
   <div class="tab">
     <span class="pan">
       <h4> {{nom}} </h4>
+      <h6>Fréquence:</h6>
     </span>
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
@@ -11,65 +12,131 @@
       <!-- Position Column -->
       <ng-container matColumnDef="S">
         <th mat-header-cell *matHeaderCellDef> S </th>
-        <td mat-cell *matCellDef="let element"> {{element.rang}} </td>
+        <td mat-cell *matCellDef="let element" class="{{getClass(element)}}"> {{element.rang}} </td>
       </ng-container>
 
       <!-- Name Column -->
       <ng-container matColumnDef="Date">
         <th mat-header-cell *matHeaderCellDef> Date </th>
-        <td mat-cell *matCellDef="let element"> {{element.created_at}} </td>
+        <td mat-cell *matCellDef="let element" class="{{getClass(element)}}"> {{element.createdAt}} </td>
       </ng-container>
 
       <ng-container matColumnDef="Cot.">
         <th mat-header-cell *matHeaderCellDef> Cot </th>
-        <td mat-cell *matCellDef="let element"> 09 </td>
+        <td mat-cell *matCellDef="let element" class="{{getClass(element)}}">{{nbPart(element.id,element.rang)}} </td>
       </ng-container>
 
-      <ng-container matColumnDef="T.V.">
-        <th mat-header-cell *matHeaderCellDef> Cot </th>
-        <td mat-cell *matCellDef="let element"> 09 </td>
+      <ng-container matColumnDef="T.V." *ngIf="type=='Vente'">
+        <th mat-header-cell *matHeaderCellDef> T.V. </th>
+        <td mat-cell *matCellDef="let element" class="{{getClass(element)}}"> {{element.tauxVente|money}} </td>
       </ng-container>
 
       <ng-container matColumnDef="Comp.">
-        <th mat-header-cell *matHeaderCellDef> Cot </th>
-        <td mat-cell *matCellDef="let element"> 09 </td>
+        <th mat-header-cell *matHeaderCellDef> Comp </th>
+        <td mat-cell *matCellDef="let element" class="{{getClass(element)}}"> {{element.complement|money}} </td>
       </ng-container>
-
-      <ng-container matColumnDef="Boi.">
-        <th mat-header-cell *matHeaderCellDef> Cot </th>
-        <td mat-cell *matCellDef="let element"> 09</td>
+      <ng-container matColumnDef="Supl." *ngIf="type=='Vente'">
+        <th mat-header-cell *matHeaderCellDef> Supl </th>
+        <td mat-cell *matCellDef="let element" class="{{getClass(element)}}">{{getSupl(element.rang)}}</td>
+      </ng-container>
+      <ng-container matColumnDef="Boi." *ngIf="type=='Vente'">
+        <th mat-header-cell *matHeaderCellDef> Boi </th>
+        <td mat-cell *matCellDef="let element" class="{{getClass(element)}}">{{element.tauxTontine}}</td>
       </ng-container>
 
       <ng-container matColumnDef="Ret.">
-        <th mat-header-cell *matHeaderCellDef> Cot </th>
-        <td mat-cell *matCellDef="let element"> 09 </td>
+        <th mat-header-cell *matHeaderCellDef> Ret </th>
+        <td mat-cell *matCellDef="let element" class="{{getClass(element)}}"> {{nbRetard(element.id,element.rang)|money}} </td>
       </ng-container>
 
       <ng-container matColumnDef="E.P.">
-        <th mat-header-cell *matHeaderCellDef> Cot </th>
-        <td mat-cell *matCellDef="let element"> 09 </td>
+        <th mat-header-cell *matHeaderCellDef> E.P. </th>
+        <td mat-cell *matCellDef="let element" class="{{getClass(element)}}"> {{nbPaid(element.id,element.rang)|money}} </td>
       </ng-container>
 
       <ng-container matColumnDef="E.N.P.">
-        <th mat-header-cell *matHeaderCellDef> Cot </th>
-        <td mat-cell *matCellDef="let element"> 09 </td>
+        <th mat-header-cell *matHeaderCellDef> E.N.P </th>
+        <td mat-cell *matCellDef="let element" class="{{getClass(element)}}"> {{nbNonPaid(element.id,element.rang)|money}} </td>
       </ng-container>
 
       <!-- Weight Column -->
       <ng-container matColumnDef="bt">
         <th mat-header-cell *matHeaderCellDef>  </th>
-        <td mat-cell *matCellDef="let element">
+        <td mat-cell *matCellDef="let element" class="{{getClass(element)}}">
           <span>
-            <button mat-stroked-button color="primary" routerLink="/tontine/affiche/{{idTontine}}/{{element.id}}" *ngIf="element.statut ==3"> Afficher </button>
-            <button mat-flat-button color="primary" routerLink="/tontine/affiche/{{idTontine}}/{{element.id}}" *ngIf="element.statut !=3"> Terminer </button>
+            <button mat-stroked-button color="primary" routerLink="/public/tontine/affiche/{{idTontine}}/{{element.id}}" *ngIf="element.statut >=2"> Afficher </button>
+            <h5 class="primary" *ngIf="element.statut <2"> Non Terminer </h5>
           </span>
         </td>
       </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <ng-container matColumnDef="label" *ngIf="type=='Vente'">
+        <td mat-footer-cell *matFooterCellDef colspan="3">
+          <h4>TOTAL:</h4>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="label" *ngIf="type=='Simple'">
+        <td mat-footer-cell *matFooterCellDef colspan="2">
+          <h4>TOTAL:</h4>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="total">
+        <td mat-footer-cell *matFooterCellDef>
+          <h4>{{totalTontine|money}}</h4>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="totalComplement">
+        <td mat-footer-cell *matFooterCellDef>
+          <h4>{{TotalComplement|money}}</h4>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="totalSuplement">
+        <td mat-footer-cell *matFooterCellDef>
+          <h4>{{totalSupplement|money}}</h4>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="boisson" *ngIf="type=='Vente'">
+        <td mat-footer-cell *matFooterCellDef>
+          <h4 *ngIf="type=='Vente'">{{totalBoisson|money}}</h4>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="totalRt">
+        <td mat-footer-cell *matFooterCellDef>
+          <h4>{{totalRetrad|money}}</h4>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="totalE.P">
+        <td mat-footer-cell *matFooterCellDef>
 
+          <h4>{{totalEchecPaid|money}}</h4>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="totalE.N.P">
+        <td mat-footer-cell *matFooterCellDef>
+          <h4>{{totalEchecNonPaid|money}}</h4>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="space">
+        <td mat-footer-cell *matFooterCellDef >
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="getTableHeader()"></tr>
+      <tr mat-row *matRowDef="let row; columns: getTableHeader();"></tr>
+      <tr mat-footer-row *matFooterRowDef="getTableFooter()"></tr>
     </table>
+
+    <section class="pan">
+      <span class="border-success">
+        Total Caisse =  Tontine + Retard + Echec payé + supplement - Boisson - Complement - {{nbToureGratuit}} Tour(s) Gratuit
+      </span>
+      <h1>Total : {{getTotal()|money}} </h1>
+    </section>
   </div>
+<!--  <app-add-member></app-add-member>-->
+
+  <app-classement> </app-classement>
+  <button mat-raised-button color="warn">Fermer cette tontine</button>
 </div>
 

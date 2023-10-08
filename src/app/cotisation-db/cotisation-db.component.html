@@ -1,14 +1,14 @@
 
 <div mat-dialog-content>
-  Confirmer la cotisation de 20 000F Chez Mr
+  Confirmer la cotisation de {{participation.enregistrement.tontine?.tauxTontine}} Chez Mr
   <p>
-    KAMEewe dnasewq?
+    {{participation.enregistrement.membre.nom}}
   </p>
   <p>
     NB: le retard sera pris en compte.
   </p>
 </div>
-<div mat-dialog-actions >
-  <button mat-button mat-dialog-close cdkFocusInitial  mat-button  class="Btn" color="primary">Ok</button>
-  <button mat-button mat-dialog-close class="Btn">No</button>
+<div mat-dialog-actions>
+  <button mat-flat-button cdkFocusInitial  mat-button  class="Btn" color="primary" (click)="cotiser()">OUI</button>
+  <button mat-button mat-dialog-close color="accent" class="Btn">NON</button>
 </div>

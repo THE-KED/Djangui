@@ -1,0 +1,55 @@
+<div class="content">
+  <div class="tab">
+    <table mat-table [dataSource]="dataSource.slice()" class="mat-elevation-z8">
+
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="No">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let element,let i = index" [class]="getClass(element)">
+          <span class="mobile-label"> No :</span>
+          {{i+1}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="Tontine">
+        <th mat-header-cell *matHeaderCellDef> Tontine </th>
+        <td mat-cell *matCellDef="let element" [class]="getClass(element)">
+          <span class="mobile-label"> Tontine :</span>
+          {{element.cotisation.nom}} </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="Seance">
+        <th mat-header-cell *matHeaderCellDef> Seance </th>
+        <td mat-cell *matCellDef="let element,let i=index" [class]="getClass(element)">
+          <span class="mobile-label"> Seance :</span>
+          {{element.cotisation.rang}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Etat">
+        <th mat-header-cell *matHeaderCellDef> Participation </th>
+        <td mat-cell *matCellDef="let element,let i=index" [class]="getClass(element)">
+
+          <span class="mobile-label"> Participation :</span>
+          <span *ngIf="element.echec" class="lab"> Echec non payer </span>
+          <span *ngIf="element.retard">Retard</span>
+          <span *ngIf="!element.tontine && !element.echec" class="lab">Echec payer le : {{element.updatedAt}}</span>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Montant">
+        <th mat-header-cell *matHeaderCellDef> Montant </th>
+        <td mat-cell *matCellDef="let element,let i=index" [class]="getClass(element)">
+          <span class="mobile-label"> Montant :</span>
+          {{checkMontant(element)|money}} </td>
+      </ng-container>
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+</div>

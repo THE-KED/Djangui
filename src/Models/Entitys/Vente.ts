@@ -12,9 +12,12 @@ export class Vente extends Tontine{
     taux_retard: number,
     frequence: number,
     created_at: Date | null,
-    updated_at: Date | null
+    updated_at: Date | null,
+    max:number,
+    taux_echec_b:number|null
+
   ) {
     super(id,actif,nom,type,taux_tontine,taux_echec,taux_retard,
-      frequence,created_at,updated_at);
+      frequence,created_at,updated_at,max,taux_echec_b);
   }
 }

@@ -1,3 +1,23 @@
+@mixin glass-morph($type){
+  @if $type == 1{
+    background-color: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    color: #efefef;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 1%;
+    box-shadow: 0 25px 35px #262626cc;
+
+  }
+  @if $type == 2{
+    background-color: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    //color: #efefef;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 1%;
+    box-shadow: 0 25px 35px #262626cc;
+
+  }
+}
 .content{
   width: 100%;
   height: auto;
@@ -8,14 +28,14 @@
 .tab{
   width: 60%;
   margin: 45px 0 75px 0;
-  background-color: #efefef;
+  @include glass-morph(2);
+
 }
 
 table{
   width: 50%;
   height: 50%;
-  //background: #efefef;
-
+  background: none;
 }
 .echec{
   display: inline-flex;
@@ -27,6 +47,7 @@ table{
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
 
   button{
     width: 95%;
@@ -49,5 +70,16 @@ tr:hover{
   //background-color: rgba(220, 20, 60, 0.2);
 }
 .lab{
+  color: royalblue;
+}
+.inf{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 5px 0 10px 0;
+  font-weight: bold;
+}
+.success{
   color: royalblue;
 }

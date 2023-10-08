@@ -1,10 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {DataTestService} from "../Services/data-test.service";
-import {Simple} from "../../Models/Entitys/Simple";
-import {Vente} from "../../Models/Entitys/Vente";
 import {TontineServiceService} from "../Services/tontine-service.service";
 import {Tontine} from "../../Models/Abstracts/Tontine";
 import {TypeTontine} from "../../Models/Entitys/TypeTontine";
+import {Router} from "@angular/router";
 
 
 export interface Section {
@@ -20,11 +18,9 @@ export interface Section {
 
 export class TontineListComponent implements OnInit{
 
-  simples:Simple[]=[];
-  ventes:Vente[]=[];
   types:TypeTontine[]=[];
   tontines:Tontine[][]=[];
-  constructor(private tontineService:TontineServiceService) {
+  constructor(private tontineService:TontineServiceService,private route :Router) {
   }
   ngOnInit() {
 
@@ -37,13 +33,27 @@ export class TontineListComponent implements OnInit{
 
         this.tontineService.LoadTontine().subscribe(
           data=>{
-            for(let i=0 ;i<data.length ;i++){
-              for(let j=0;j<this.types.length;j++){
-                if(data[i].type.id==this.types[j].id){
-                  this.tontines[j].push(data[i]);
+
+            if(this.route.url=="/start" || this.route.url=="/echec"){
+              for(let i=0 ;i<data.length ;i++){
+                for(let j=0;j<this.types.length;j++){
+                  if(data[i].type.id==this.types[j].id){
+                    if(data[i].actif)
+                    this.tontines[j].push(data[i]);
+                  }
+                }
+              }
+            }else {
+              for(let i=0 ;i<data.length ;i++){
+                for(let j=0;j<this.types.length;j++){
+                  if(data[i].type.id==this.types[j].id){
+                    this.tontines[j].push(data[i]);
+                  }
                 }
               }
             }
+
+
           }
         );
       },
@@ -54,17 +64,6 @@ export class TontineListComponent implements OnInit{
 
       }
     );
-
-
-    // this.dataServ.SimpleSubject.subscribe(data=>{
-    //   this.simples=data;
-    //   console.log("simple :",data)
-    // });
-    // this.dataServ.VenteSubject.subscribe(data=>{
-    //   this.ventes=data;
-    //   console.log("ventes :",data)
-    // });
-    // this.dataServ.emit();
   }
 
   folders: Section[] = [

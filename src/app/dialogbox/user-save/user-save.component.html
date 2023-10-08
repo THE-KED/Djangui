@@ -1,0 +1,58 @@
+<form [formGroup]="form">
+<h1 mat-dialog-title>Modifier ses informations</h1>
+<div mat-dialog-content>
+  <p>Entrez vos informations</p>
+  <div class="panel">
+
+    <div class="pan">
+      <mat-form-field appearance="outline">
+        <mat-label>nom</mat-label>
+        <input formControlName="nom" matInput placeholder="" required="true">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>nee le</mat-label>
+        <input formControlName="born" matInput placeholder=""  [matDatepicker]="picker1">
+        <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>profession</mat-label>
+        <input formControlName="profession" matInput placeholder="">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>contact</mat-label>
+        <input formControlName="contact" matInput placeholder="" required="true">
+      </mat-form-field>
+    </div>
+    <div class="pan">
+        <mat-radio-group aria-label="" required="true" formControlName="sexe">
+          <mat-radio-button value="1">Homme</mat-radio-button>
+          <mat-radio-button value="2">Femme</mat-radio-button>
+        </mat-radio-group>
+      <mat-form-field appearance="outline">
+        <mat-label>adresse</mat-label>
+        <input formControlName="residance" matInput placeholder="">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>CNI</mat-label>
+        <input formControlName="CNI" matInput placeholder="" required="true">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Deliver le</mat-label>
+        <input formControlName="delivre" matInput placeholder=""  [matDatepicker]="picker2">
+        <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input formControlName="pass" matInput placeholder="">
+      </mat-form-field>
+    </div>
+
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button color="warn" mat-dialog-close>Annuler</button>
+  <button mat-flat-button color="primary" [disabled]="!form.valid" (click)="saveUser()">Enregistrer</button>
+</div>
+</form>

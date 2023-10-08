@@ -1,0 +1,7 @@
+<div mat-dialog-content>
+  Payer l'échec de {{data.cotisation.tauxEchec}} chez M/Mme {{data.enregistrement.membre.nom}}?
+</div>
+<div mat-dialog-actions align="end" id="action">
+  <button mat-button mat-dialog-close cdkFocusInitial>Non</button>
+  <button mat-flat-button mat-dialog-close color="primary" (click)="buy()">Oui</button>
+</div>

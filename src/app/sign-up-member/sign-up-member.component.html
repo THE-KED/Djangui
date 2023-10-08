@@ -1,95 +1,154 @@
 <div class="content">
+  <ng-form [formGroup]="form">
   <mat-stepper class="form-floating">
     <mat-step>
-      <form >
         <ng-template matStepLabel>Nom</ng-template>
-        <mat-form-field appearance="outline" >
-          <mat-label>Nom et Prenoms</mat-label>
-          <input matInput type="texte">
-          <mat-error>Error</mat-error>
-        </mat-form-field>
+        <mat-grid-list cols="6" rowHeight="45px">
 
-        <mat-form-field appearance="outline">
-          <mat-label>Date de naissance</mat-label>
-          <input matInput [matDatepicker]="picker">
-          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
+          <mat-grid-tile colspan="3" rowspan="2">
+            <mat-form-field appearance="outline" >
+              <mat-label>Nom et Prenoms</mat-label>
+              <input matInput formControlName="nom" type="texte" placeholder="nom" required="true">
+              <mat-error>Error</mat-error>
+            </mat-form-field>
+          </mat-grid-tile>
 
-        <mat-form-field appearance="outline">
-          <mat-label>Lieu de naissance</mat-label>
-          <input matInput>
-        </mat-form-field>
+          <mat-grid-tile colspan="3" rowspan="2">
+            <mat-form-field appearance="outline">
+              <mat-label>Date de naissance</mat-label>
+              <input matInput formControlName="born" [matDatepicker]="picker">
+              <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </mat-grid-tile>
 
-        <mat-radio-group aria-label="Sexe">
-          <mat-radio-button value="1">Homme</mat-radio-button>
-          <mat-radio-button value="2">Femme</mat-radio-button>
-        </mat-radio-group>
+          <mat-grid-tile colspan="3" rowspan="2">
+            <mat-form-field appearance="outline">
+              <mat-label>Lieu de naissance</mat-label>
+              <input matInput formControlName="ldn" placeholder="lieu">
+            </mat-form-field>
+          </mat-grid-tile>
 
-        <button mat-button color="primary" matStepperNext>Suivant</button>
-      </form>
+          <mat-grid-tile colspan="3" rowspan="2">
+            <mat-radio-group aria-label="Sexe" formControlName="sexe">
+              <mat-radio-button value="Homme">Homme</mat-radio-button>
+              <mat-radio-button value="Femme">Femme</mat-radio-button>
+            </mat-radio-group>
+          </mat-grid-tile>
+
+          <mat-grid-tile colspan="5">
+
+          </mat-grid-tile>
+
+          <mat-grid-tile colspan="1" rowspan="1">
+            <button mat-stroked-button color="primary" matStepperNext>Suivant</button>
+          </mat-grid-tile>
+
+        </mat-grid-list>
     </mat-step>
     <mat-step>
       <ng-template matStepLabel="Contact">Contact</ng-template>
 
-      <mat-form-field appearance="outline" >
-        <mat-label>Telephone</mat-label>
-        <input matInput type="texte">
-        <mat-error>Error</mat-error>
-      </mat-form-field>
+      <mat-grid-list cols="6" rowHeight="45px">
 
-      <mat-form-field appearance="outline" >
-        <mat-label>Adresse-Ville-Quartier</mat-label>
-        <input matInput type="texte">
-        <mat-error>Error</mat-error>
-      </mat-form-field>
+        <mat-grid-tile colspan="3" rowspan="2">
+          <mat-form-field appearance="outline" >
+            <mat-label>Telephone</mat-label>
+            <input matInput formControlName="tel" type="texte" placeholder="Numero de Telephone">
+            <mat-error>Error</mat-error>
+          </mat-form-field>
+        </mat-grid-tile>
 
-      <mat-form-field appearance="outline" >
-        <mat-label>No CNI</mat-label>
-        <input matInput type="texte">
-        <mat-error>Error</mat-error>
-      </mat-form-field>
+        <mat-grid-tile colspan="3" rowspan="2">
+          <mat-form-field appearance="outline" >
+            <mat-label>Adresse-Ville-Quartier</mat-label>
+            <input matInput type="texte"  formControlName="adresse">
+            <mat-error>Error</mat-error>
+          </mat-form-field>
+        </mat-grid-tile>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Date de delivrance</mat-label>
-        <input matInput [matDatepicker]="picker">
-        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
+        <mat-grid-tile colspan="3" rowspan="2">
+          <mat-form-field appearance="outline" >
+            <mat-label>No CNI</mat-label>
+            <input matInput type="texte"  formControlName="cni">
+            <mat-error>Error</mat-error>
+          </mat-form-field>
+        </mat-grid-tile>
 
-      <button mat-button matStepperNext>Suivant</button>
+        <mat-grid-tile colspan="3" rowspan="2">
+          <mat-form-field appearance="outline">
+            <mat-label>Date de delivrance</mat-label>
+            <input matInput  formControlName="dcni" [matDatepicker]="picker2">
+            <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile colspan="5" rowspan="1">
+
+        </mat-grid-tile>
+
+        <mat-grid-tile colspan="1" rowspan="1">
+          <button mat-stroked-button color="primary" matStepperNext>Suivant</button>
+
+        </mat-grid-tile>
+
+      </mat-grid-list>
+
+
+
+
+
+
+
+
     </mat-step>
     <mat-step>
+
       <ng-template matStepLabel="Reunion">Reunion</ng-template>
-      <mat-form-field appearance="outline" >
-        <mat-label>Parrin 1</mat-label>
-        <input matInput type="texte">
-        <mat-error>Error</mat-error>
-      </mat-form-field>
+      <mat-grid-list cols="6" rowHeight="45px">
 
-      <mat-form-field appearance="outline" >
-        <mat-label>Parrin 2</mat-label>
-        <input matInput type="texte">
-        <mat-error>Error</mat-error>
-      </mat-form-field>
+        <mat-grid-tile colspan="3" rowspan="2">
+          <mat-form-field appearance="outline" >
+            <mat-label>Email</mat-label>
+            <input matInput type="texte"  formControlName="email">
+            <mat-error>Error</mat-error>
+          </mat-form-field>
+        </mat-grid-tile>
 
-      <mat-form-field appearance="outline" >
-        <mat-label>Parrin 3</mat-label>
-        <input matInput type="texte">
-        <mat-error>Error</mat-error>
-      </mat-form-field>
+        <mat-grid-tile colspan="3" rowspan="2">
+          <mat-form-field appearance="outline" >
+            <mat-label>Profession</mat-label>
+            <input matInput type="texte" formControlName="profession">
+            <mat-error>Error</mat-error>
+          </mat-form-field>
+        </mat-grid-tile>
 
-      <mat-form-field appearance="outline" >
-        <mat-label>Parrin 4</mat-label>
-        <input matInput type="texte">
-        <mat-error>Error</mat-error>
-      </mat-form-field>
+        <mat-grid-tile colspan="3" rowspan="2">
+          <mat-form-field appearance="outline" >
+            <mat-label>Parrin</mat-label>
+            <input matInput type="texte" formControlName="parrin">
+            <mat-error>Error</mat-error>
+          </mat-form-field>
+        </mat-grid-tile>
 
-      <mat-form-field appearance="outline" >
-        <mat-label>Parrin 5</mat-label>
-        <input matInput type="texte">
-        <mat-error>Error</mat-error>
-      </mat-form-field>
+        <mat-grid-tile colspan="3" rowspan="2">
+          <button mat-stroked-button (click)="saveUser()" color="primary">Terminer</button>
+
+        </mat-grid-tile>
+
+      </mat-grid-list>
+
+
+
+
+
+
+
+
+
     </mat-step>
   </mat-stepper>
+  </ng-form>
+
 </div>

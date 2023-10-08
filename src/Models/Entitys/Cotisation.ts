@@ -2,7 +2,7 @@ import {Tontine} from "../Abstracts/Tontine";
 import {Beneficiaire} from "./Beneficiaire";
 
 export class Cotisation {
-  id: number;
+  id: number|null;
   nom: string;
   rang: number;
   statut: number;
@@ -12,24 +12,26 @@ export class Cotisation {
   complement: number;
   gratuit: number;
   tontine:Tontine;
-  beneficiaire: Beneficiaire;
-  created_at: Date | null;
-  updated_at: Date | null;
+  beneficiaire: Beneficiaire|null;
+  createdAt: Date | null;
+  updatedAt: Date | null;
+  supplement:number;
 
   constructor(
-    id: number,
+    id: number|null,
     nom: string,
     rang: number,
     statut: number,
     taux_echec: number,
     taux_vente: number,
     complement: number,
-    taux_tontine:number,
+    taux_tontine: number,
     gratuit: number,
-    tontine:Tontine,
-    beneficiaire: Beneficiaire,
+    tontine: Tontine,
+    beneficiaire: Beneficiaire|null,
     created_at: Date | null,
-    updated_at: Date | null
+    updated_at: Date | null,
+    supl:number
   ) {
     this.id = id;
     this.nom = nom;
@@ -42,7 +44,8 @@ export class Cotisation {
     this.gratuit = gratuit;
     this.tontine =tontine;
     this.beneficiaire = beneficiaire;
-    this.created_at = created_at;
-    this.updated_at = updated_at;
+    this.createdAt = created_at;
+    this.updatedAt = updated_at;
+    this.supplement = supl;
   }
 }

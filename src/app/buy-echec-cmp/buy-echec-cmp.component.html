@@ -1,9 +1,10 @@
 <div class="content">
   <div class="tab">
     <span class="pan">
-      <h4> 03/07/23-v-2 ème TONTINE VENTE VINGT MILLE-Mar/21/20000 </h4>
+      <h4> {{cot.nom}}</h4>
+      <h1>Seance {{cot.rang}}</h1>
     </span>
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource.slice()" class="mat-elevation-z8">
 
       <!--- Note that these columns can be defined in any order.
             The actual rendered columns are set as a property on the row definition" -->
@@ -11,18 +12,18 @@
       <!-- Position Column -->
       <ng-container matColumnDef="position">
         <th mat-header-cell *matHeaderCellDef> No. </th>
-        <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+        <td mat-cell *matCellDef="let element,let i = index "> {{i+1}} </td>
       </ng-container>
 
       <!-- Name Column -->
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef> Nom </th>
-        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.enregistrement.membre.nom}} </td>
       </ng-container>
 
       <!-- Weight Column -->
       <ng-container matColumnDef="cotisation">
-        <th mat-header-cell *matHeaderCellDef> Cotisation </th>
+        <th mat-header-cell *matHeaderCellDef> Cotisation ({{cot.tauxTontine|money}})</th>
         <td mat-cell *matCellDef="let element">
           <span class="lab">Non</span>
         </td>
@@ -30,13 +31,15 @@
 
       <!-- Symbol Column -->
       <ng-container matColumnDef="retard">
-        <th mat-header-cell *matHeaderCellDef> Retard </th>
-        <td mat-cell *matCellDef="let element"> <span matBadge="1" class="echec" matBadgeColor="warn"> Oui </span> </td>
+        <th mat-header-cell *matHeaderCellDef> Retard ({{cot.tauxEchec|money}}) </th>
+        <td mat-cell *matCellDef="let element"> Non </td>
       </ng-container>
 
       <ng-container matColumnDef="echec">
-        <th mat-header-cell *matHeaderCellDef> Echec </th>
-        <td mat-cell *matCellDef="let element"> <button mat-flat-button color="primary"> Payer </button>
+        <th mat-header-cell *matHeaderCellDef> Echec ({{cot.tauxEchec+cot.tauxTontine|money}}) </th>
+        <td mat-cell *matCellDef="let element">
+          <button *ngIf="checkBuy(element)" mat-flat-button color="primary" (click)="openDialog('300ms','100ms',element)"> Payer </button>
+          <h4 class="success" *ngIf="!checkBuy(element)">Paye le :{{element.updatedAt|date:"yyyy-MM-dd"}}</h4>
         </td>
       </ng-container>
 
@@ -45,14 +48,15 @@
 
     </table>
     <span class="pan">
-      <tfoot>
-        <tr>
-          <th scope="col" colspan="2">Total</th>
-          <th scope="col" class="text-center">0 / 1 100 000 F</th>
-          <th scope="col" class="text-center">0</th>
-          <th scope="col" class="text-center"> 55</th>
-        </tr>
-      </tfoot>
+      <span class="inf">
+        <span> Bénéficiaire: {{cot.beneficiaire?.enregistrement?.membre?.nom}} </span>
+        <span> Avalise: {{cot.beneficiaire?.avaliste?.membre?.nom}} </span>
+        <span *ngIf="cot.complement!=null"> Complement: {{cot.complement|money}} </span><span *ngIf="cot.complement!=null"> Complement: {{cot.complement|money}} </span>
+      </span>
+      <span class="inf">
+        <span> Taux: {{cot.tauxTontine|money}} </span>
+        <span> Taux Echec: {{cot.tauxEchec|money}} </span>
+      </span>
     </span>
   </div>
 </div>

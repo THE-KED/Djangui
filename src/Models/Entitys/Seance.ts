@@ -1,8 +1,8 @@
 export class Seance {
   id: number;
   lieu: string;
-  created_at: Date | null;
-  updated_at: Date | null;
+  createdAt: Date | null;
+  updatedAt: Date | null;
 
   constructor(
     id: number,
@@ -12,7 +12,7 @@ export class Seance {
   ) {
     this.id = id;
     this.lieu = lieu;
-    this.created_at = created_at;
-    this.updated_at = updated_at;
+    this.createdAt = created_at;
+    this.updatedAt = updated_at;
   }
 }

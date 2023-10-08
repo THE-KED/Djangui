@@ -7,13 +7,15 @@ export abstract class Tontine{
   nom: string;
   type:TypeTontine;
   tauxTontine: number ;
-  tauxEchec: number ;
+  tauxEchec: number;
   tauxRetard: number;
   frequence: number;
-  created_at: Date | null;
-  updated_at: Date | null;
+  createdAt: Date | null;
+  updatedAt: Date | null;
+  nbSeances: number;
+  tauxEchecB: number|null;
 
-  constructor(id:number, actif: boolean, nom: string, type:TypeTontine, taux_tontine: number, taux_echec: number, taux_retard: number, frequence: number, created_at: Date | null, updated_at: Date | null) {
+  constructor(id:number, actif: boolean, nom: string, type:TypeTontine, taux_tontine: number, taux_echec: number, taux_retard: number, frequence: number, created_at: Date | null, updated_at: Date | null , max: number,tauxEchecb:number|null) {
     this.id=id;
     this.actif = actif;
     this.nom = nom;
@@ -22,7 +24,9 @@ export abstract class Tontine{
     this.tauxEchec = taux_echec;
     this.tauxRetard = taux_retard;
     this.frequence = frequence;
-    this.created_at = created_at;
-    this.updated_at = updated_at;
+    this.createdAt = created_at;
+    this.updatedAt = updated_at;
+    this.nbSeances = max;
+    this.tauxEchecB = tauxEchecb
   }
 }

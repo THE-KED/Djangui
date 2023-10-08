@@ -39,12 +39,12 @@
         <!-- Symbol Column -->
         <ng-container matColumnDef="retard">
           <th mat-header-cell *matHeaderCellDef> </th>
-          <td mat-cell *matCellDef="let element" class="{{getClass(element)}}"> <button mat-flat-button color="warn" routerLink="/tontine/desc/{{element.id}}">Afficher</button> </td>
+          <td mat-cell *matCellDef="let element" class="{{getClass(element)}}"> <button mat-flat-button color="warn" routerLink="/public/tontine/desc/{{element.id}}">Afficher</button> </td>
         </ng-container>
 
         <ng-container matColumnDef="echec">
           <th mat-header-cell *matHeaderCellDef> </th>
-          <td mat-cell *matCellDef="let element" class="{{getClass(element)}}"> <button *ngIf="!element.actif" mat-stroked-button disabled="false" color="primary">Ajouter un Membre</button>
+          <td mat-cell *matCellDef="let element" class="{{getClass(element)}}"> <button *ngIf="element.actif" mat-stroked-button disabled="false" routerLink="/public/member/add/{{element.id}}" color="primary">Ajouter un Membre</button>
           </td>
         </ng-container>
 
