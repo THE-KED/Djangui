@@ -1,6 +1,6 @@
 <form [formGroup]="form">
 <h1 mat-dialog-title>Modifier ses informations</h1>
-<div mat-dialog-content>
+<div mat-dialog-content class="dialog--box">
   <p>Entrez vos informations</p>
   <div class="panel">
 
@@ -22,6 +22,10 @@
       <mat-form-field appearance="outline">
         <mat-label>contact</mat-label>
         <input formControlName="contact" matInput placeholder="" required="true">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>UserName</mat-label>
+        <input formControlName="user" matInput placeholder="">
       </mat-form-field>
     </div>
     <div class="pan">

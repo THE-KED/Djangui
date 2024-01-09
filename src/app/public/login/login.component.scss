@@ -1,0 +1,61 @@
+@mixin glass-morph($type){
+  @if $type == 1{
+    background-color: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    color: #efefef;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 1%;
+    box-shadow: 0 25px 35px #262626cc;
+
+  }
+  @if $type == 2{
+    background-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    color: #efefef;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 1%;
+    box-shadow: 0 25px 35px #262626cc;
+
+  }
+}
+.content{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.list{
+
+  width: 50%;
+  @include glass-morph(2);
+
+  margin: 65px 0 65px 0;
+}
+form{
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+  @include glass-morph(2);
+}
+@media screen and (max-width: 768px){
+  .list{
+    width: 65%;
+  }
+}
+@media screen and (max-width: 576px){
+  .list{
+    width: 85%;
+  }
+}
+@media screen and (max-width: 425px){
+  .list{
+    width: 95%;
+  }
+}
+.example-container mat-form-field + mat-form-field {
+  margin-left: 8px;
+}
+.err--msg{
+  color:#cc0000;
+}

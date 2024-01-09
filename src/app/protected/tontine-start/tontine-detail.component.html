@@ -1,0 +1,197 @@
+<div class="content">
+  <div class="tab">
+    <span class="pan">
+      <h4> {{cotisation?.nom}} </h4>
+      <h1>-- SEANCE {{cotisation?.rang}} --</h1>
+    </span>
+    <table mat-table [dataSource]="dataSource.slice()" class="mat-elevation-z8">
+
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let element,let i = index" class="{{getclass(element.enregistrement.id)}}">
+          <span class="mobile-label"> No :</span>
+          {{i+1}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Nom </th>
+        <td mat-cell *matCellDef="let element" class="{{getclass(element.enregistrement.id)}}">
+          <span class="mobile-label"> Nom :</span>
+          {{element.enregistrement.membre.nom}} {{element.enregistrement.rang|enNumber}} </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="weight">
+        <th mat-header-cell *matHeaderCellDef> Cotisation({{cot?.tauxTontine}}) </th>
+        <td mat-cell *matCellDef="let element ;index as i" class="{{getclass(element.enregistrement.id)}}">
+          <span class="mobile-label"> Cotisation :</span>
+
+          <div *ngIf="cotisation?.statut==0 || cotisation?.statut==1">
+                      <span *ngIf="echecs[i][1]<=1 && element.tontine==false">
+            <button mat-stroked-button color="primary" class="btn-cot" (click)="openDialogBox(300,200,element)"> Cotiser </button>
+          </span>
+            <span *ngIf="echecs[i][1]>1 && element.tontine==false" class="rejeter">Rejeter</span>
+            <span *ngIf="element.tontine" class="tonine"> Oui </span>
+          </div>
+
+          <div *ngIf="cotisation?.statut==2">
+            <span *ngIf="!element.tontine" class="rejeter">Non</span>
+            <span *ngIf="element.tontine" class="tonine"> Oui </span>
+          </div>
+        </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="symbol">
+        <th mat-header-cell *matHeaderCellDef> Retard ({{cotisation?.tauxEchec|money}}) </th>
+        <td mat-cell *matCellDef="let element" class="{{getclass(element.enregistrement.id)}}">
+          <span class="mobile-label"> Retard :</span>
+          <span *ngIf="element.retard" matBadge="1" class="echec" matBadgeColor="accent"> Oui </span>
+          <span *ngIf="!element.retard" class="retard"> Non </span>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="echec">
+        <th mat-header-cell *matHeaderCellDef>
+          <span *ngIf="tontine?.type?.code==1">Echec ({{cotisation?.tauxEchec|money}})</span>
+          <span *ngIf="tontine?.type?.code==2">Echec ({{cotisation?.tauxEchec|money}} | {{tontine?.tauxEchecB}}F)</span>
+        </th>
+        <td mat-cell *matCellDef="let element ;index as i" class="{{getclass(element.enregistrement.id)}}">
+          <span class="mobile-label"> Echec :</span>
+          <span *ngIf=" element.tontine==false" matBadge="{{echecs[i][1]}}" class="echec" matBadgeColor="warn"> Oui </span>
+          <span *ngIf="element.tontine"> Non </span>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+    <span class="pan">
+      <section class="footer-form">
+        <div>
+        </div>
+      </section>
+
+      <mat-grid-list cols="3" rowHeight="45px" class="letf">
+        <mat-grid-tile>
+                  <h4>Total: {{getTotal()|money}} / {{getMax()|money}}</h4>
+        </mat-grid-tile>
+        <mat-grid-tile *ngIf="tontine?.type?.code==1">
+                    <h4>A beneficier: {{benefMontant|money}}</h4>
+        </mat-grid-tile>
+        <mat-grid-tile  class="right">
+                    <h4> Echecs: {{totalEchecs|money}} ({{getNbEchec()}})</h4>
+        </mat-grid-tile>
+
+        <!--cotstatu est a 0 lorsque le capital n'a pas encore ete vendu-->
+        <form [formGroup]="benefForm" (ngSubmit)="valide()" *ngIf="cotStatu==0">
+
+          <mat-grid-tile *ngIf="cotisation?.statut==1"  class="letf">
+            <h4>Bénéficiaire: {{beneficier?.membre?.nom}} {{beneficier?.rang|enNumber}} </h4>
+          </mat-grid-tile>
+          <mat-grid-tile *ngIf="cotisation?.statut==1"  class="right">
+            <h4>Avalise: {{avlise?.membre?.nom}}</h4>
+          </mat-grid-tile>
+          <mat-grid-tile *ngIf="cotisation?.statut==1">
+            <h4>Montant de Vente: {{tv}}</h4>
+          </mat-grid-tile>
+
+          <mat-grid-tile rowspan="2" *ngIf="cotisation?.statut==0">
+            <mat-form-field appearance="outline"  class="letf">
+              <mat-label for="benef"> Beneficier </mat-label>
+              <mat-select id="benef" formControlName="benef" required="true">
+                <mat-option *ngFor="let data of nonBenef" [value]= "data">
+                  {{data.membre.nom}} {{data.rang|enNumber}}
+                </mat-option >
+              </mat-select >
+            </mat-form-field >
+          </mat-grid-tile>
+
+          <mat-grid-tile rowspan="2" *ngIf="cotisation?.statut==0">
+            <mat-form-field appearance="outline">
+              <mat-label for="aval"> Avalise </mat-label>
+              <mat-select id="aval" formControlName="aval" required="true">
+                <mat-option *ngFor="let data of membres" [value]= "data">
+                  {{data.membre.nom}} {{data.rang|enNumber}}
+                </mat-option >
+              </mat-select >
+            </mat-form-field >
+          </mat-grid-tile>
+
+          <mat-grid-tile rowspan="2" *ngIf="cotisation?.statut==0">
+            <mat-form-field *ngIf="tontine?.type?.nom=='Vente'" appearance="outline">
+              <mat-label for="TV"> Taux Vente </mat-label>
+              <input id="TV" matInput placeholder="Taux Vente" formControlName="TV">
+            </mat-form-field >
+          </mat-grid-tile>
+
+          <mat-grid-tile colspan="3" *ngIf="cotisation?.statut==0">
+            <button [disabled]="!benefForm.valid" mat-flat-button color="primary">VALIDER</button>
+          </mat-grid-tile>
+        </form>
+
+        <!--cotstatu est a 1 lorsque le capital ete vendu mais la seance pas terminer-->
+        <form [formGroup]="compleForm" (ngSubmit)="AddComplement()" *ngIf="cotStatu==1">
+          <mat-grid-tile  class="letf bot1" rowspan="2">
+            <h4>Bénéficiaire: {{beneficier?.membre?.nom}} {{beneficier?.rang|enNumber}}</h4>
+          </mat-grid-tile>
+          <mat-grid-tile  class="rigth bot2" rowspan="2">
+            <h4>Avalise: {{avlise?.membre?.nom}} {{avlise?.rang|enNumber}}</h4>
+          </mat-grid-tile>
+
+          <mat-grid-tile *ngIf="cotisation?.statut==1" rowspan="2"  class="letf">
+            <mat-form-field appearance="outline">
+              <mat-label for="compl"> Complement </mat-label>
+              <input id="compl" matInput placeholder="Complement" formControlName="compl">
+            </mat-form-field>
+          </mat-grid-tile>
+
+          <mat-grid-tile *ngIf="cotisation?.statut==1">
+            <h4> Supplement: {{supl}}</h4>
+          </mat-grid-tile>
+
+          <mat-grid-tile *ngIf="cotisation?.statut==1">
+
+          </mat-grid-tile>
+
+          <mat-grid-tile *ngIf="cotisation?.statut==1" colspan="3">
+                    <button mat-flat-button color="primary">TERMINER</button>
+          </mat-grid-tile>
+        </form>
+
+
+        <mat-grid-tile *ngIf="cotisation?.statut==2">
+          <h4>Montant de Vente: {{cotisation?.tauxVente|money}}</h4>
+        </mat-grid-tile>
+        <mat-grid-tile *ngIf="cotisation?.statut==2"  class="letf">
+          <h4>Complement: {{complement|money}}</h4>
+        </mat-grid-tile>
+        <mat-grid-tile *ngIf="cotisation?.statut==2">
+          <h4>Supplement: {{supl|money}}</h4>
+        </mat-grid-tile>
+
+
+      </mat-grid-list>
+
+      <mat-grid-list *ngIf="cotisation?.statut==2" cols="2" rowHeight="50px">
+        <mat-grid-tile  class="letf bot1">
+          <h4>Bénéficiaire: {{beneficier?.membre?.nom}} {{beneficier?.rang|enNumber}}</h4>
+        </mat-grid-tile>
+        <mat-grid-tile class="rigth bot2">
+          <h4>Avalise: {{avlise?.membre?.nom}} {{avlise?.rang|enNumber}}</h4>
+        </mat-grid-tile>
+
+        <mat-grid-tile colspan="2">
+          <button class="impr--btn" mat-flat-button> IMPRIMER </button>
+        </mat-grid-tile>
+      </mat-grid-list>
+
+    </span>
+  </div>
+</div>

@@ -3,7 +3,6 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {FormBuilder, FormControl} from "@angular/forms";
 import {MembrePoste} from "../../../Models/Entitys/MembrePoste";
 import {Membre} from "../../../Models/Entitys/Membre";
-import {DatePipe} from "@angular/common";
 import {MembreServiceService} from "../../Services/membre-service.service";
 import {AuthService} from "../../Services/auth.service";
 
@@ -14,41 +13,41 @@ import {AuthService} from "../../Services/auth.service";
 })
 export class UserSaveComponent implements OnInit{
 
+  name=this.authService.appUser?.name;
   form=this.fb.group({
-    nom:new FormControl(this.memberPoste.membre.nom),
-    born:new FormControl(this.memberPoste.membre.ddn),
-    residance:new FormControl(this.memberPoste.membre.adresse),
-    profession:new FormControl(this.memberPoste.membre.profession),
-    contact:new FormControl(this.memberPoste.membre.tel),
+    nom:new FormControl(this.member.nom),
+    born:new FormControl(this.member.ddn),
+    residance:new FormControl(this.member.adresse),
+    profession:new FormControl(this.member.profession),
+    contact:new FormControl(this.member.tel),
     sexe:new FormControl(this.getSexe()),
-    CNI:new FormControl(this.memberPoste.membre.cni),
-    delivre:new FormControl(this.memberPoste.membre.dcni),
-    pass:new FormControl("")
+    CNI:new FormControl(this.member.cni),
+    delivre:new FormControl(this.member.dcni),
+    pass:new FormControl(""),
+    user:new FormControl(this.name)
   });
   membre:Membre|undefined;
 
   ngOnInit() {
-    this.membre=this.memberPoste.membre;
-    console.log("membrePoste",this.memberPoste);
   }
 
   constructor(public dialogRef:MatDialogRef<UserSaveComponent>,
               private fb:FormBuilder,
               @Inject(MAT_DIALOG_DATA)
-              public memberPoste:MembrePoste,
+              public member:Membre,
               private memberService:MembreServiceService,
               private authService:AuthService
     ) {
   }
 
   getSexe(){
-    if(this.memberPoste.membre.sexe==="Homme")
+    if(this.member.sexe==="Homme")
       return "1";
     return  "2";
   }
 
   saveUser(){
-    let membre= this.memberPoste.membre;
+    let membre= this.member;
     let pass= String(this.form.controls.pass.value);
     membre.nom=String(this.form.controls.nom.value);
     membre.ddn=new Date(String(this.form.controls.born.value));
@@ -59,6 +58,9 @@ export class UserSaveComponent implements OnInit{
     membre.tel=String(this.form.controls.contact.value);
     membre.dcni=String(this.form.controls.delivre.value);
     membre.updatedAt=new Date();
+    let user = String(this.form.controls.user.value);
+    console.log("userSer",this.authService.user,"user",user)
+
 
     console.log(membre);
 
@@ -80,6 +82,10 @@ export class UserSaveComponent implements OnInit{
 
           }
         );
+      }
+      if(this.authService.appUser?.name!=user){
+        console.log("yoooo")
+        this.authService.changeName(String(this.authService.appUser?.name),user).subscribe(data=>{console.log(data)})
       }
     });
   }

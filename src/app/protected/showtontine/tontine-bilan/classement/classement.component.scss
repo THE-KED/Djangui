@@ -1,0 +1,44 @@
+@mixin glass-morph($type){
+  @if $type == 1{
+    background-color: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    color: #efefef;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 1%;
+    box-shadow: 0 25px 35px #262626cc;
+
+  }
+  @if $type == 2{
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    color: #efefef;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 1%;
+    box-shadow: 0 25px 35px #262626cc;
+
+  }
+}
+.content{
+  width: 99vw;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  //background: #17a2b8;
+}
+.tab{
+  width: 70%;
+  margin: 45px 0 35px 0;
+  @include glass-morph(2)
+}
+table{
+  position: relative;
+  @include glass-morph(2);
+  background: transparent;
+}
+@media screen and (max-width: 500px){
+  .tab{
+    width: 96%;
+  }
+}

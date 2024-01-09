@@ -27,7 +27,7 @@ export class TontineServiceService {
   public LoadMyTontine(){
     let id=-1;
     if(this.authService.appUser)
-      id=this.authService.appUser.membrePostes.membre.id
+      id=this.authService.appUser.membre.id
     let params = new HttpParams().set("id",id);
 
     return this.http.post<Tontine[]>(TONTINE_URL+"/my",params);
@@ -133,6 +133,11 @@ export class TontineServiceService {
   }
 
   save(ton: TontineData) {
+
+    return this.http.post<Tontine>(TONTINE_URL+"/save",ton);
+
+  }
+  saveTontine(ton: Tontine) {
 
     return this.http.post<Tontine>(TONTINE_URL+"/save",ton);
 

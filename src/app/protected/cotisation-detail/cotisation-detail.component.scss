@@ -1,0 +1,161 @@
+@mixin glass-morph($type){
+  @if $type == 1{
+    background-color: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    color: #efefef;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 1%;
+    box-shadow: 0 25px 35px #262626cc;
+
+  }
+  @if $type == 2{
+    background-color: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    //color: #efefef;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+
+    box-shadow: 0 25px 35px #262626cc;
+
+  }
+}
+.content{
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tab{
+  width: 60%;
+  margin: 45px 0 75px 0;
+  background-color: #efefef;
+  padding: 40px;
+  @include glass-morph(2)
+}
+
+table{
+  width: 50%;
+  height: 50%;
+  background: none;
+}
+tr{
+  background: none;
+}
+.echec{
+  display: inline-flex;
+  min-width: 35px;
+}
+.pan{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  button{
+    width: 95%;
+    margin: 10px;
+  }
+
+  tfoot{
+    margin-top: 25px;
+    width: 95%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+}
+.mat-mdc-row{
+  .ben{
+    background-color: rgba(255, 223, 126, 0.75) !important;
+  }
+}
+.rejeter{
+  color: crimson;
+}
+.tonine{
+  color: #17a2b8;
+}
+#finish{
+  background-color: rgba(220, 20, 60, 0.3);
+}
+.finish{
+  background-color: rgba(220, 20, 60, 0.3);
+}
+.btn-imprime{
+  background-color: #17a2b8;
+  color: #efefef;
+  font-stretch: expanded;
+}
+.inf{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 5px 0 10px 0;
+  //font-weight: bold;
+}
+mat-grid-list{
+  width: 100%;
+
+}
+
+.mobile-label {
+  display: none;
+}
+.pc--mat--grid--list{
+  display: flex;
+}
+.mobile--mat--grid--list{
+  display: none;
+}
+
+@media(max-width: 600px) {
+
+  .tab {
+    width: 95%;
+  }
+
+  // Custom header label that shows in each column, with a set width and bold font
+  .mobile-label {
+    width: 80px !important;
+    display: inline-block;
+    font-weight: bold !important;
+    margin-right: 2em;
+  }
+
+  // Remove the header row altogether
+  .mat-mdc-header-row {
+    display: none;
+  }
+
+  // The row cells should display as a column, justified left, with a bit of extra padding
+  .mat-mdc-row {
+    width: 100%;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start;
+    padding: 8px 24px;
+    height: auto;
+    border-bottom: 1px solid #464646;
+  }
+  .mdc-data-table__cell{
+    display: flex;
+    flex-direction: row;
+    padding: 0.7em;
+    border: none;
+    width: 100%;
+
+  }
+
+  .pc--mat--grid--list{
+    display: none;
+  }
+  .mobile--mat--grid--list{
+    display: flex;
+  }
+}

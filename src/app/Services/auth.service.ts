@@ -1,9 +1,10 @@
 import {Injectable, OnInit} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
-import {AUTH_URL, CHANGE_PASS, MEMBER_URL} from "../../Conf/Http";
+import {AUTH_URL, CHANGE_PASS, CHANGE_USERNAME, MEMBER_URL, RESET} from "../../Conf/Http";
 import jwtDecode from "jwt-decode";
 import {User} from "../../Models/Entitys/User";
 import {Router} from "@angular/router";
+import {Membre} from "../../Models/Entitys/Membre";
 
 @Injectable({
   providedIn: 'root'
@@ -72,6 +73,30 @@ export class AuthService implements OnInit{
       .set("username",username).set("password",pass);
 
     return this.http.post(CHANGE_PASS,params,hd);
+
+  }
+  public changeName(last:string,username:string){
+
+    let hd = {
+      headers: new HttpHeaders().set('content-type','application/x-www-form-urlencoded')
+    };
+    let params = new HttpParams()
+      .set("last",last).set("username",username);
+
+    return this.http.post(CHANGE_USERNAME,params,hd);
+
+  }
+
+  public reset(element: Membre) {
+
+
+    let hd = {
+      headers: new HttpHeaders().set('content-type','application/x-www-form-urlencoded')
+    };
+    let params = new HttpParams()
+      .set("username",element.nom);
+
+    return this.http.post(RESET,params,hd);
 
   }
 }

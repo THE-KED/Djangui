@@ -1,0 +1,26 @@
+<div class="content">
+
+  <div class="list">
+
+    <form [formGroup]="Form" (ngSubmit)="auth()">
+
+      <h1>Bienvenu sur DJANGUI</h1>
+      <mat-form-field appearance="outline">
+        <mat-label>Nom:</mat-label>
+        <input matInput id="nom" type="text" placeholder="Nom" formControlName="nom" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Mot de passe:</mat-label>
+        <input matInput id="pass" [type]="hide ? 'password' : 'text'" placeholder="Mot de passe" formControlName="pass" required>
+        <button mat-icon-button matSuffix type="button" (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+      <mat-label class="err--msg" *ngIf="error">{{getErrorMessage()}}</mat-label>
+
+
+      <button mat-raised-button [disabled]="!Form.valid">CONNEXION</button>
+    </form>
+  </div>
+</div>

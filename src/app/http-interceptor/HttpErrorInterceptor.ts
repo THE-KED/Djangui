@@ -34,6 +34,7 @@ export class httpErrorInterceptor implements HttpInterceptor{
           }
       },
         (err)=>{
+          this.spinnerService.requestEnded();
           this.spinnerService.resetSpinner();
           throw err;
         }

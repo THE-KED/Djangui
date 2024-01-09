@@ -1,0 +1,200 @@
+
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+               [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+               [mode]="(isHandset$ | async) ? 'over' : 'side'"
+               [opened]="(isHandset$ | async) === true">
+    <mat-toolbar color="warn">
+      <mat-toolbar-row class="tool--row">
+        <span class="img--content">
+          <img src="../../../assets/img/djan.png">
+        </span>
+      </mat-toolbar-row>
+    </mat-toolbar>
+    <mat-nav-list>
+      <span class="start--btn--wapper"><button mat-stroked-button color="primary" routerLink="start" *ngIf="authService.role.includes('BUREAU')">Démarrer une Cotisation</button></span>
+      <span>
+
+        <!--new btn-->
+
+        <mat-accordion>
+
+          <mat-expansion-panel (opened)="panelOpenState = true"
+                               (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <span class="menu--btn"><mat-icon>paids</mat-icon>Cotisations</span>
+              </mat-panel-title>
+
+            </mat-expansion-panel-header>
+              <button mat-menu-item class="sub--btn" *ngIf="authService.role.includes('BUREAU')"><mat-icon>add</mat-icon>Nouvelle</button>
+              <button mat-menu-item class="sub--btn" routerLink="tontines" *ngIf="authService.role.includes('BUREAU')"><mat-icon color="primary">analytics</mat-icon>Consulter</button>
+              <button mat-menu-item class="sub--btn" routerLink="mytontine"><mat-icon color="primary">analytics</mat-icon>Mes cotisations</button>
+              <button mat-menu-item class="sub--btn" routerLink="echec" *ngIf="authService.role.includes('BUREAU')"><mat-icon color="accent">payments</mat-icon>payer un echec</button>
+          </mat-expansion-panel>
+
+            <!--new btn-->
+
+          <mat-expansion-panel (opened)="panelOpenState = true"
+                                         (closed)="panelOpenState = false" *ngIf="authService.role.includes('BUREAU')">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <span  class="menu--btn" *ngIf="authService.role.includes('BUREAU')"><mat-icon>groups</mat-icon>Tontines</span>
+
+              </mat-panel-title>
+
+            </mat-expansion-panel-header>
+              <button mat-menu-item class="sub--btn" routerLink="creat"><mat-icon color="primary">add</mat-icon>Nouvelle Tontine</button>
+              <button mat-menu-item class="sub--btn" routerLink="show/tontine" ><mat-icon color="primary">list</mat-icon>Liste Des Tontines</button>
+          </mat-expansion-panel>
+
+          <!--new btn-->
+
+          <mat-expansion-panel (opened)="panelOpenState = true"
+                               (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <span class="menu--btn" ><mat-icon>person</mat-icon>Membres</span>
+
+              </mat-panel-title>
+
+            </mat-expansion-panel-header>
+              <button mat-menu-item class="sub--btn" routerLink="addMember" *ngIf="authService.role.includes('BUREAU')"><mat-icon color="primary">person_add</mat-icon>Inscrire</button>
+              <button mat-menu-item class="sub--btn" routerLink="profile"><mat-icon color="primary">person</mat-icon>Profile</button>
+              <button mat-menu-item class="sub--btn" routerLink="etat"><mat-icon color="primary">recent_actors</mat-icon>Etat</button>
+              <button mat-menu-item class="sub--btn" routerLink="members"><mat-icon color="primary">groups</mat-icon>Consulter</button>
+          </mat-expansion-panel>
+
+          <!--new btn-->
+
+          <mat-expansion-panel (opened)="panelOpenState = true"
+                               (closed)="panelOpenState = false" *ngIf="authService.role.includes('BUREAU')">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+<!--                <span class="menu&#45;&#45;btn"><mat-icon>account_balance_wallet</mat-icon>Caisse</span>-->
+
+              </mat-panel-title>
+
+            </mat-expansion-panel-header>
+              <button mat-menu-item class="sub--btn" [routerLink]="['./Caisse/new']"><mat-icon color="primary">add</mat-icon>Nouvelle Caisse</button>
+              <button mat-menu-item class="sub--btn" [routerLink]="['./Caisse']"><mat-icon color="primary">recent_actors</mat-icon>Etat de caisse</button>
+              <button mat-menu-item class="sub--btn" [routerLink]="['./Caisse/depot']"><mat-icon color="primary">arrow_drop_up</mat-icon>Depot</button>
+              <button mat-menu-item class="sub--btn" [routerLink]="['./Caisse/pret']"><mat-icon color="primary">arrow_drop_down</mat-icon>Pret</button>
+          </mat-expansion-panel>
+
+          <!--new btn-->
+
+          <mat-expansion-panel (opened)="panelOpenState = true"
+                               (closed)="panelOpenState = false" *ngIf="authService.role.includes('BUREAU')">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <span class="menu--btn plus">Plus</span>
+
+              </mat-panel-title>
+
+            </mat-expansion-panel-header>
+              <button mat-menu-item class="sub--btn"><mat-icon color="primary">balance</mat-icon>Sanctions</button>
+              <button mat-menu-item class="sub--btn"><mat-icon color="primary">local_hospital</mat-icon>Aides</button>
+              <button mat-menu-item class="sub--btn"><mat-icon color="primary">done_all</mat-icon>Presences</button>
+              <button mat-menu-item class="sub--btn"><mat-icon color="primary">badge</mat-icon>Etats</button>
+              <button mat-menu-item class="sub--btn"><mat-icon color="primary">arrow_drop_up</mat-icon>Credit de caisse</button>
+              <button mat-menu-item class="sub--btn"><mat-icon color="primary">arrow_drop_down</mat-icon>Debit de caisse</button>
+          </mat-expansion-panel>
+
+
+        </mat-accordion>
+      </span>
+
+      <span class="auth--bottom" *ngIf="authService.isAuth">
+        <button mat-stroked-button color="warn" (click)="logout()"><mat-icon>logout</mat-icon>DECONNEXION</button>
+      </span>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+
+
+    <mat-toolbar>
+      <mat-toolbar-row>
+        <span class="logo" *ngIf="(isHandset$ | async) === true"><img src="../../../assets/img/icon.png" height="35px"> DJANGUI</span>
+
+        <span  *ngIf="(isHandset$ | async) === false"> <button mat-stroked-button routerLink="start" color="primary" *ngIf="authService.role.includes('BUREAU')">Démarrer une Cotisation</button> </span>
+        <span class="buttons" *ngIf="(isHandset$ | async) === false">
+          <span> <button mat-stroked-button class="menu-btn" [matMenuTriggerFor]="cotisation"><mat-icon>paids</mat-icon>Cotisations</button> </span>
+          <span> <button mat-stroked-button class="menu-btn" [matMenuTriggerFor]="tontines" *ngIf="authService.role.includes('BUREAU')"><mat-icon>groups</mat-icon>Tontines</button> </span>
+          <span> <button mat-stroked-button class="menu-btn" [matMenuTriggerFor]="membres" ><mat-icon>person</mat-icon>Membres</button> </span>
+<!--          <span> <button mat-stroked-button class="menu-btn" [matMenuTriggerFor]="caisse" *ngIf="authService.role.includes('BUREAU')"><mat-icon>account_balance_wallet</mat-icon>Caisse</button> </span>-->
+          <span> <button mat-stroked-button class="menu-btn" [matMenuTriggerFor]="epargne" *ngIf="authService.role.includes('BUREAU')"><mat-icon>account_balance_wallet</mat-icon>Epargne</button> </span>
+
+        </span>
+        <span class="plus"  *ngIf="(isHandset$ | async) === false"> <button mat-button color="warn" class="menu-btn" [matMenuTriggerFor]="plus" *ngIf="authService.role.includes('BUREAU')">Plus</button> </span>
+        <span class="auth end-0">
+      <button mat-button color="warn"  *ngIf="(isHandset$ | async) === false" (click)="logout()"><mat-icon>logout</mat-icon></button>
+    </span>
+        <button color="primary"
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          (click)="drawer.toggle()"
+          *ngIf="isHandset$ | async">
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+
+        <mat-menu #cotisation>
+          <button mat-menu-item class="sub-menu-btn" *ngIf="authService.role.includes('BUREAU')"><mat-icon>add</mat-icon>Nouvelle</button>
+          <button mat-menu-item class="sub-menu-btn" routerLink="tontines" *ngIf="authService.role.includes('BUREAU')"><mat-icon color="primary">analytics</mat-icon>Consulter</button>
+          <button mat-menu-item class="sub-menu-btn" routerLink="mytontine"><mat-icon color="primary">analytics</mat-icon>Mes cotisations</button>
+          <button mat-menu-item class="sub-menu-btn" routerLink="echec" *ngIf="authService.role.includes('BUREAU')"><mat-icon color="accent">payments</mat-icon>Payer un echec</button>
+        </mat-menu>
+
+        <mat-menu #tontines>
+          <button mat-menu-item class="sub-menu-btn" routerLink="creat" *ngIf="authService.role.includes('BUREAU')"><mat-icon color="primary">add</mat-icon>Nouvelle tontine</button>
+          <button mat-menu-item class="sub-menu-btn" routerLink="show/tontine" ><mat-icon color="primary">list</mat-icon>Liste tontine</button>
+        </mat-menu>
+
+        <mat-menu #membres>
+          <button mat-menu-item class="sub-menu-btn" routerLink="addMember" *ngIf="authService.role.includes('BUREAU')"><mat-icon color="primary">person_add</mat-icon>Inscrire</button>
+          <button mat-menu-item class="sub-menu-btn" routerLink="profile"><mat-icon color="primary">person</mat-icon>Profile</button>
+          <button mat-menu-item class="sub-menu-btn" routerLink="etat"><mat-icon color="primary">recent_actors</mat-icon>Etat</button>
+          <button mat-menu-item class="sub-menu-btn" routerLink="members"><mat-icon color="primary">groups</mat-icon>Consulter</button>
+        </mat-menu>
+
+        <mat-menu #caisse>
+          <button mat-menu-item class="sub-menu-btn" [routerLink]="['./Caisse/new']"><mat-icon color="primary">add</mat-icon>Nouvelle Caisse</button>
+          <button mat-menu-item class="sub-menu-btn" [routerLink]="['./Caisse']"><mat-icon color="primary">recent_actors</mat-icon>Etat de caisse</button>
+          <button mat-menu-item class="sub-menu-btn" [routerLink]="['./Caisse/depot']"><mat-icon color="primary">arrow_drop_up</mat-icon>Depot</button>
+          <button mat-menu-item class="sub-menu-btn" [routerLink]="['./Caisse/pret']"><mat-icon color="primary">arrow_drop_down</mat-icon>Pret</button>
+        </mat-menu>
+
+        <mat-menu #emprunt>
+          <button mat-menu-item class="sub-menu-btn">Nouvelle</button>
+          <button mat-menu-item class="sub-menu-btn">Consulter</button>
+        </mat-menu>
+
+        <mat-menu #epargne>
+          <button mat-menu-item class="sub-menu-btn" [routerLink]="['./Caisse/new']"><mat-icon>add</mat-icon>Nouvelle</button>
+          <button mat-menu-item class="sub-menu-btn" [routerLink]="['./Caisse/depot']"><mat-icon color="primary">analytics</mat-icon>Consulter</button>
+        </mat-menu>
+
+        <mat-menu #plus>
+          <button mat-menu-item class="sub-menu-btn"><mat-icon color="primary">balance</mat-icon>Sanctions</button>
+          <button mat-menu-item class="sub-menu-btn"><mat-icon color="primary">local_hospital</mat-icon>Aides</button>
+          <button mat-menu-item class="sub-menu-btn"><mat-icon color="primary">done_all</mat-icon>Presences</button>
+          <button mat-menu-item class="sub-menu-btn"><mat-icon color="primary">badge</mat-icon>Etats</button>
+          <button mat-menu-item class="sub-menu-btn"><mat-icon color="primary">arrow_drop_up</mat-icon>Credit de caisse</button>
+          <button mat-menu-item class="sub-menu-btn"><mat-icon color="primary">arrow_drop_down</mat-icon>Debit de caisse</button>
+        </mat-menu>
+      </mat-toolbar-row>
+    </mat-toolbar>
+
+
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+
+
+
+
+
+
+
+

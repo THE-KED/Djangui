@@ -1,0 +1,195 @@
+@mixin glass-morph($type){
+  @if $type == 1{
+    background-color: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    color: #efefef;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 1%;
+    box-shadow: 0 25px 35px #262626cc;
+
+  }
+  @if $type == 2{
+    background-color: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    //color: #efefef;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 10px;
+    //box-shadow: 0 25px 35px #262626cc;
+
+  }
+}
+.content{
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tab{
+  width: 70%;
+  margin: 45px 0 75px 0;
+  padding: 50px;
+  @include glass-morph(2);
+}
+
+table{
+  width: 55%;
+  height: 50%;
+  background: none;
+  box-shadow: none;
+  border-bottom: 1px solid #17a2b8;
+}
+tr{
+  background: none;
+}
+.echec{
+  display: inline-flex;
+  min-width: 35px;
+}
+.pan{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 20px;
+
+  button{
+    width: 95%;
+    margin: 10px;
+  }
+
+  tfoot{
+    width: 95%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+}
+.mat-mdc-row{
+  .ben{
+    background-color: rgba(255, 223, 126, 0.45) !important;
+  }
+}
+.rejeter{
+  color: crimson;
+}
+.tonine{
+  color: #17a2b8;
+}
+.footer-form{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.footer-form div{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.footer--inf{
+  display: flex;
+  flex-direction: row;
+}
+
+.bot{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: row;
+  .footer-inf{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 1em 2em;
+    h4{
+      height: 100%;
+      margin: 0;
+    }
+  }
+}
+
+@media screen and (max-width: 768px){
+
+  .tab {
+    width: 80%;
+  }
+}
+mat-grid-list{
+  width: 100%;
+
+}
+
+.mobile-label {
+  display: none;
+}
+
+@media(max-width: 600px) {
+
+  .tab {
+    width: 95%;
+  }
+
+  // Custom header label that shows in each column, with a set width and bold font
+  .mobile-label {
+    width: 80px !important;
+    display: inline-block;
+    font-weight: bold !important;
+    margin-right: 2em;
+  }
+
+  // Remove the header row altogether
+  .mat-mdc-header-row {
+    display: none;
+  }
+
+  // The row cells should display as a column, justified left, with a bit of extra padding
+  .mat-mdc-row {
+    width: 100%;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start;
+    padding: 8px 24px;
+    height: auto;
+    border-bottom: 1px solid #464646;
+  }
+  .mdc-data-table__cell{
+    display: flex;
+    flex-direction: row;
+    padding: 0.7em;
+    border: none;
+    width: 100%;
+
+  }
+}
+.impr--btn{
+  background: #17a2b8;
+  color: white;
+}
+
+
+.bot1{
+  h4{
+    width: 100%;
+  }
+}
+.btn-cot{
+  border-color: #3f51b5;
+
+}
+.left mat-grid-tile-content{
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  background: burlywood;
+}
+.right div.mat-grid-tile-content,.rigth div.mat-grid-tile-content{
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+}

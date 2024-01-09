@@ -1,0 +1,58 @@
+<div class="content">
+  <div class="pan">
+    <form  class="row--content">
+      <mat-grid-list cols="1" rowHeight="40px" id="list1">
+
+        <mat-grid-tile rowspan="5">
+          <span class="card-img">
+            <h2>{{nom}}</h2>
+          </span>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <label>User name: <span> {{user?.name}}</span></label>
+        </mat-grid-tile>
+<!--        <mat-grid-tile>-->
+<!--          <label>Password: <span> {{user?.password}}</span></label>-->
+<!--        </mat-grid-tile>-->
+
+      </mat-grid-list>
+
+      <mat-grid-list cols="1" rowHeight="40px" id="list2">
+
+        <mat-grid-tile>
+          <label>Née le: <span>{{born|date:'yyyy-MM-dd'}}</span></label>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <label>Profession: <span>{{profession}}</span></label>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <label>Residance: <span>{{Residance}}</span></label>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <label>Contact: <span>{{Contact}}</span></label>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <label>Sexe: <span>{{Sexe}}</span></label>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <label>N° CNI: <span>{{CNI}}</span></label>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <label>Délivrée le:<span>{{giveAt|date:'yyyy-MM-dd'}}</span></label>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <label>Parrain: <span>{{Parrain}}</span></label>
+        </mat-grid-tile>
+
+      </mat-grid-list>
+
+<!--      <mat-grid-list cols="1" rowHeight="50px">-->
+
+
+<!--      </mat-grid-list>-->
+    </form >
+    <div class="options">
+      <button mat-raised-button (click)="openDialogBox()">Modifier</button>
+    </div>
+  </div>
+</div>

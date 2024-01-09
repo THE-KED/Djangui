@@ -1,0 +1,88 @@
+.content{
+  width: 100%;
+}
+.btn-content{
+  width: 100%;
+}
+.Btn{
+  height: 70px;
+  margin: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none;
+  width: 99%;
+  background-color: rgba(220, 0, 0, 0.7);
+}
+.encour{
+  height: 70px;
+  margin: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none;
+  width: 99%;
+}
+.Btn:hover{
+  background-color: rgba(255, 20, 60, 0.7);
+  .finish{
+    background-color: #343a40 ;
+    .title{
+      color: red;
+    }
+  }
+
+}
+.encour:hover{
+  background-color: rgba(239, 239, 239, 0.4);
+  .finish{
+    background-color: #343a40 ;
+    .title{
+      color: red;
+    }
+  }
+
+}
+
+.finish{
+  position: relative;
+  width: calc(60vw - 7px);
+  height: 50px;
+  display: flex;
+  background-color: #262626;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+
+  .title{
+    position: absolute;
+    right: 25px;
+    color: crimson;
+  }
+}
+
+.btn-content .mat-mdc-button{
+   z-index: 0 !important;
+ }
+@media screen and (max-width: 850px){
+  .finish{
+    width: calc(70vw - 7px);
+  }
+}
+@media screen and (max-width: 640px){
+  .finish{
+    width: calc(80vw - 7px);
+  }
+}
+@media screen and (max-width: 550px){
+  .finish{
+    width: calc(80vw - 7px);
+  }
+}

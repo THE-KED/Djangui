@@ -1,5 +1,6 @@
 import {MembrePoste} from "./MembrePoste";
 import {Role} from "./Role";
+import {Membre} from "./Membre";
 
 export class User {
   id: bigint;
@@ -11,10 +12,10 @@ export class User {
   createdAt: Date | null;
   updatedAt: Date | null;
   roles:Role[];
-  membrePostes:MembrePoste;
+  membre:Membre;
 
 
-  constructor(id: bigint, name: string, email: string, email_verified_at: Date | null, password: string, remember_token: string | null, created_at: Date | null, updated_at: Date | null, roles: Role[], membrePostes: MembrePoste) {
+  constructor(id: bigint, name: string, email: string, email_verified_at: Date | null, password: string, remember_token: string | null, created_at: Date | null, updated_at: Date | null, roles: Role[], membre: Membre) {
     this.id = id;
     this.name = name;
     this.email = email;
@@ -24,6 +25,6 @@ export class User {
     this.createdAt = created_at;
     this.updatedAt = updated_at;
     this.roles = roles;
-    this.membrePostes = membrePostes;
+    this.membre = membre;
   }
 }

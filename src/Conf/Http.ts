@@ -8,3 +8,13 @@ export const AUTH_URL = BASE_URL+"/auth/login";
 
 export const CHANGE_PASS = BASE_URL+"/auth/pass";
 
+export const RESET = BASE_URL+"/auth/reset";
+
+export const CHANGE_USERNAME = BASE_URL+"/auth/userName";
+
+export const EPARGNE_URL = BASE_URL+"/epargne";
+
+
+
+
+

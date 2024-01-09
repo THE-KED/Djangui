@@ -1,24 +1,29 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {MemberListComponent} from "./member-list/member-list.component";
-import {SignUpMemberComponent} from "./sign-up-member/sign-up-member.component";
-import {TontineListComponent} from "./tontine-list/tontine-list.component";
-import {TontineDetailComponent} from "./tontine-detail/tontine-detail.component";
-import {SeanceListComponent} from "./seance-list/seance-list.component";
-import {ShowtontineComponent} from "./showtontine/showtontine.component";
-import {CotisationDetailComponent} from "./cotisation-detail/cotisation-detail.component";
-import {TontineDescComponent} from "./tontine-desc/tontine-desc.component";
-import {BuyEchecCmpComponent} from "./buy-echec-cmp/buy-echec-cmp.component";
-import {CreatTontineComponent} from "./creat-tontine/creat-tontine.component";
-import {AddMemberComponent} from "./add-member/add-member.component";
-import {CheckgratuitComponent} from "./checkgratuit/checkgratuit.component";
-import {GratuitCotComponent} from "./gratuit-cot/gratuit-cot.component";
-import {LoginComponent} from "./Auth/login/login.component";
+import {MemberListComponent} from "./protected/member-list/member-list.component";
+import {SignUpMemberComponent} from "./protected/sign-up-member/sign-up-member.component";
+import {TontineListComponent} from "./protected/tontine-list/tontine-list.component";
+import {TontineDetailComponent} from "./protected/tontine-start/tontine-detail.component";
+import {SeanceListComponent} from "./protected/seance-list/seance-list.component";
+import {TontineBilanListComponent} from "./protected/showtontine/tontine-bilan-list.component";
+import {CotisationDetailComponent} from "./protected/cotisation-detail/cotisation-detail.component";
+import {BuyEchecCmpComponent} from "./protected/buy-echec-cmp/buy-echec-cmp.component";
+import {CreatTontineComponent} from "./protected/creat-tontine/creat-tontine.component";
+import {AddMemberComponent} from "./protected/add-member/add-member.component";
+import {CheckgratuitComponent} from "./protected/checkgratuit/checkgratuit.component";
+import {GratuitCotComponent} from "./protected/gratuit-cot/gratuit-cot.component";
+import {LoginComponent} from "./public/login/login.component";
 import {authGuard} from "./gaurds/auth.guard";
-import {ProfilComponent} from "./Presonal/profil/profil.component";
-import {PersonalTontineListComponent} from "./Presonal/tontine-list/personal-tontine-list.component";
-import {EtatComponent} from "./Presonal/etat/etat.component";
-import {HomeComponent} from "./home/home.component";
+import {ProfilComponent} from "./private/profil/profil.component";
+import {PersonalTontineListComponent} from "./private/tontine-list/personal-tontine-list.component";
+import {EtatComponent} from "./private/etat/etat.component";
+import {HomeComponent} from "./public/home/home.component";
+import {TontineBilanComponent} from "./protected/showtontine/tontine-bilan/tontine-bilan.component";
+import {CreateCaisseComponent} from "./protected/Caisse/create-caisse/create-caisse.component";
+import {CaisseEtatComponent} from "./protected/Caisse/etat/caisse-etat.component";
+import {ListeCaissesComponent} from "./protected/Caisse/liste-caisses/liste-caisses.component";
+import {CaisseOperationComponent} from "./protected/Caisse/caisse-operation/caisse-operation.component";
+import {DashboardComponent} from "./utils/dashboard/dashboard.component";
 
 const routes: Routes = [
   {
@@ -35,6 +40,11 @@ const routes: Routes = [
     canActivate:[authGuard],
     component:HomeComponent,
     children:[
+      {
+        path:"dashboard",
+        component:DashboardComponent,
+        canActivate:[authGuard],
+      },
       {
         path:"profile",
         component:ProfilComponent,
@@ -82,7 +92,6 @@ const routes: Routes = [
         path:"creat",
         component: CreatTontineComponent,
         canActivate: [authGuard]
-
       },
       {
         path:"member/add/:id",
@@ -92,7 +101,7 @@ const routes: Routes = [
       },
       {
         path:"tontine/desc/:id",
-        component: TontineDescComponent,
+        component:TontineBilanComponent,
         canActivate: [authGuard]
 
       },
@@ -140,7 +149,7 @@ const routes: Routes = [
       },
       {
         path:"show/tontine",
-        component: ShowtontineComponent,
+        component:TontineBilanListComponent,
         canActivate: [authGuard]
 
       },
@@ -149,6 +158,56 @@ const routes: Routes = [
         component: SignUpMemberComponent,
         canActivate: [authGuard]
       },
+      {
+        path:"Caisse",
+        canActivate:[authGuard],
+        children:[
+          {
+            path:"",
+            redirectTo:"etat",
+            pathMatch:"full"
+          },
+          {
+            path:"new",
+            component:CreateCaisseComponent,
+          },
+          {
+            path:"etat",
+            component:CaisseEtatComponent,
+          },
+          {
+            path:"depot",
+            children:[
+              {
+                path:"",
+                component:ListeCaissesComponent,
+              },
+              {
+                path:"op",
+                component:CaisseOperationComponent,
+              }
+            ],
+          },
+          {
+            path:"pret",
+            children:[
+              {
+                path:"",
+                component:ListeCaissesComponent,
+              },
+              {
+                path:"op",
+                component:CaisseOperationComponent,
+              }
+            ],
+          },
+          {
+            path:"operation",
+            component:CaisseOperationComponent,
+          }
+        ]
+      },
+
     ]
   },
 

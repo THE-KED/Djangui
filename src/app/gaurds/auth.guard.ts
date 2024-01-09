@@ -11,6 +11,19 @@ export const authGuard: CanActivateFn = (route, state) => {
     return true;
   }
   else {
+
+    // let json = localStorage.getItem("appUser");
+    // if(json!=null){
+    //   console.log("json",json);
+    //
+    //   authService.loadProfile(JSON.parse(json)).then(
+    //     data=>{
+    //       return true;
+    //     }
+    //   );
+    // }
+    // return true
+
     let router = inject(Router);
     console.log("roteur",router);
     router.navigateByUrl("/login");

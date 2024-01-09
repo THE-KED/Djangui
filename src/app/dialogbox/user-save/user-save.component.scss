@@ -5,12 +5,12 @@ p{
   margin: 1em 0;
   display: flex !important;
   flex-wrap: wrap;
-  //background: darkgrey;
   justify-content: space-evenly;
 }
 .pan{
   display: flex !important;
   flex-direction: column !important;
-  //height: 30%;
   overflow: auto;
+  margin: 0 1em;
 }
+
